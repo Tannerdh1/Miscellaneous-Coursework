@@ -1,0 +1,263 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter this block of commands.  If you're proficient at LaTeX, you may include additional packages, create macros, etc. immediately below this block of commands, but make sure to NOT alter the header, margin, and comment settings here. 
+\documentclass[12pt]{article}
+\usepackage{amsmath,amsthm,amssymb,amsfonts, enumitem, fancyhdr, color, comment, graphicx, environ, algorithm, algpseudocode}
+
+
+
+
+%\pagestyle{fancy}
+%\setlength{\headheight}{65pt}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{sol}
+    {\emph{Solution:}
+    }
+    {
+    \qed
+    }
+\specialcomment{com}{ \color{blue} \textbf{Comment:} }{\color{black}} %for instructor comments while grading
+\NewEnviron{probscore}{\marginpar{ \color{blue} \tiny Problem Score: \BODY \color{black} }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter this block.
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Homework \#1 \\ CPSC 250 \\ Due: Friday, September 13th \\ Millicent Bystander}%replace X with the appropriate number
+\date{}
+
+\maketitle
+
+\noindent
+Recall $\log_2 = \lg$, $\log_{10} = \log$. Use the rules of exponents (page 55) and logarithms (page 56) to complete the following problems. Don't use a calculator.
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{1}
+ Compute the following. Show your work.
+\begin{enumerate}
+ \item Example: $\lg 1024 = \lg 2^{10} = 10 \lg 2 = 10$
+ 
+ \item $\log 10000 = \log 10^{4} = 4 \log 10 = 4$
+ 
+ \item $\log_{3/2} 81/16 = \log_{3/2} 3/2^{4} = 4 \log_{3/2} 3/2 = 4$
+ 
+ \item $\log_5 0.2 = \log_5 5^{-1} = -1 \log_5 5 = -1$
+ 
+ \item $\log_{1/2} 1024 = \log_{1/2} 1/2^{10} = 10 \log_{1/2} 1/2 = 10$
+ 
+\end{enumerate}
+\end{problem}
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{2} 
+Simplify the following expressions. The final expression should have the form $a^b$,
+where $a$ and $b$ are integers.
+\begin{enumerate}
+ \item Example $ 8^{\lg 64} = (2^3)^{\lg 64} = (2^{\lg 64})^3 = 64^3 = (2^6)^3 = 2^{18}$
+ 
+ \item $ 4^{\lg 64}= (2^{2})^{\lg 64} = (2^{\lg 64})^{2} = 64^2 = (2^6)^2 = 2^8 $
+ 
+ \item $ (\frac{1}{2})^{\lg 64}= (2^{-1})^{\lg 64} = (2^{\lg 64})^{-1} = 64^-1 = (2^6)^-1 = 2^-6 $
+ 
+ \item $ 49^{\log_7 0.125}= (7^{2})^{\log_7 .125} = (7^{log_7 .125})^2 = (.125)^2 = (8^{-1})^2 = 8^{-2}$
+ 
+ \item $ 3^{\log 100}= 3^2 $
+ 
+\end{enumerate}
+\end{problem}
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{3} 
+Find $x$ in the following equations. Show your work.
+\begin{enumerate}
+ \item \begin{flalign*}
+       &2^x = 512 = 2^9\\
+       \implies &\lg 2^x = \lg 2^9 \textrm{ Take log of both sides.}\\
+       \implies &x = 9&&
+       \end{flalign*}
+       
+ \item $ 2^x= n \\
+        \lg 2^x = \lg n \\
+        x = \lg n$
+ 
+ \item $ (\frac{1}{2})^x= 1024 \\
+        2^{-x} = 2^10 \\
+        \lg 2^{-x} = \lg 2^10 \\
+        -x = 10 \\
+        x = 10$
+ 
+ \item $ 7^x= n \\
+        \log_{7} 7^x = \log_{7} n \\
+        x = \log_{7} n$
+ 
+ \item $ (\frac{3}{4})^{2x}= n
+        3(1/4)^{2x} = n \\
+        3 \log_{4} 4^{-2x} = \log_{4} n \\
+        -6x = \log_{4} n \\
+        x = -(\log_{4} n)/6$
+\end{enumerate}
+\end{problem}
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{4} 
+Give closed form formulas for the following summations. (Reading Appendix A.1 will help.)
+\begin{enumerate}
+\item \begin{flalign*}
+		\Sigma_{i=1}^{k}2i &= 2\Sigma_{i=1}^{k}i\\
+		&= 2\frac{k(k+1)}{2}\\
+		&= k(k+1)&&
+      \end{flalign*}
+      
+\item $\Sigma_{i=1}^{k}(2i+1) = 2(k(k+1)/2) + 1 \\
+        = k(k+1) + 1 \\
+        = k^2 +k + 1$
+
+\item $\Sigma_{i=4}^{k}i^2 = \frac{k(k+1)(2k+1)}{6}$
+
+\item $\Sigma_{i=k}^{n}i$, where $k \leq n$ are nonnegative.
+
+\item $\Sigma_{i=k}^{k-1} i = 0$ (Yes, the range is intentionally empty).
+\end{enumerate}
+\end{problem}
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{5} 
+Give closed form formulas for the following summations.
+\begin{enumerate}
+\item \begin{flalign*}
+      \Sigma_{i=1}^{k}2^i &= 2 \Sigma_{i=0}^{k-1}2^i \textrm{, factored out 2} \\
+      &= 2 (\frac{2^k-1}{2-1}) \\
+      &= 2^{k+1}-2&&
+      \end{flalign*}
+
+\item $\Sigma_{i=4}^{k}2^i = 2 \Sigma_{i=4}^{k-4}2^i \textrm{, factored out 2} = 2 (\frac{2^k-4}{2-4})\\
+    = \frac{2^{k-4}-2}{-2} \\
+    = -1^{k-4} + 1 $
+
+\item $\Sigma_{i=0}^{\infty}(\frac{1}{4})^i$
+
+\item $\Sigma_{i=1}^{\infty}(\frac{3}{4})^{2i}$
+
+\item $\Sigma_{i=0}^{\infty}(\frac{1}{10})^{2i+1}$
+\end{enumerate}
+\end{problem}
+
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{7} 
+For each of the following sets, list two functions that belong to each set.
+\begin{enumerate}
+\item $O(n): n, n/2.$
+
+\item $O(\lg n): \lg n/2, \lg 3n$
+
+\item $\Theta(n^2): n^2/4, 8n^2$
+
+\item $o(2^n): \lg n, \lg^2 n$
+
+\item $\omega(1): n^2, n$
+\end{enumerate}
+\end{problem}
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{8} 
+For each of the following problems, fill out the correct value for $x$ in each
+ASSERT statement.
+
+\begin{enumerate}
+ 
+ \item
+ \begin{algorithm}[H]
+ \begin{algorithmic}
+ \State $x = 0$
+ \For{ $i = 1 \textrm{ to } n$ }
+   \State $x = x + 1$
+ \EndFor
+ \State //ASSERT $x == n $
+ \end{algorithmic}
+\end{algorithm} 
+
+\item
+\begin{algorithm}[H]
+ \begin{algorithmic}
+ \State $//PRE: p \leq q$ and are integers
+ \State $x = 0$
+ \For{ $i = p \textrm{ to } q$ }
+   \State $x = x + 1$
+ \EndFor
+ \State //ASSERT $x == (q-p) $
+ \end{algorithmic}
+ \end{algorithm}
+ 
+ \item
+ \begin{algorithm}[H]
+ \begin{algorithmic}
+ \State $x = 0$
+ \For{ $i = 1 \textrm{ to } n$ }
+   \For{ $j = 1 \textrm{ to } n$ }
+     \State $x = x + 1$
+   \EndFor
+ \EndFor
+ \State //ASSERT $x == n^2 $
+ \end{algorithmic}
+\end{algorithm}
+ 
+ \item
+ \begin{algorithm}[H]
+ \begin{algorithmic}
+ \State $x = 0$
+ \For{ $i = 1 \textrm{ to } n$ }
+   \For{ $j = 1 \textrm{ to } m$ }
+     \State $x = x + 1$
+   \EndFor
+ \EndFor
+ \State //ASSERT $x == (m*n) $
+ \end{algorithmic}
+\end{algorithm}
+
+ \item
+ \begin{algorithm}[H]
+ \begin{algorithmic}
+ \State $x = 0$
+ \For{ $i = 1 \textrm{ to } n$ }
+   \For{ $j = 1 \textrm{ to } i$ }
+     \State $x = x + 1$
+   \EndFor
+ \EndFor
+ \State //ASSERT $x == (n*i) $
+ \end{algorithmic}
+ \end{algorithm}  
+
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{9}
+Informally explain how the Bubblesort algorithm works.
+Try running the algorithm on the array
+$[4\ 3\ 2\ 1]$.
+\end{problem}
+
+\begin{algorithm}[H]
+ \caption{Bubblesort}
+ \begin{algorithmic}[1]
+ \Procedure{BUBBLESORT}{$A$}\Comment{Sorts the array $A$}
+ \For{$i =1$ to $A.\textrm{length}-1$}
+  \For{$j = A.\textrm{length}$ down to $i+1$}
+   \If{$A[j] < A[j-1]$}
+    \State Exchange $A[j]$ with $A[j-1]$
+   \EndIf
+  \EndFor
+ \EndFor
+ \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+Explanation: Bubblesort sorts arrays starting at the end of the array. It takes the last integer in the array and compares it to the integer in the space before it. If it's smaller than it, it moves on to the next space until it finds something it's bigger than. Once it finds an integer that's less than it, it moves on to the space. It continues this process until the array is sorted.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter anything below this line.
+\end{document}

@@ -1,0 +1,81 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+\addbibresource{references.bib}
+
+\title{Project Write-up Rough Draft}
+\author{Tanner Hammond}
+\date{March 2021}
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+Blockchain systems have gained popularity since the introduction of Bitcoin in 2009. Since the introduction of blockchain, there have been many additions to the systems in attempts to improve aspects such speed and security. One of these additions is smart contracts which we saw introduced with Ethereum in 2015. Besides just cryptocurrencies, blockchains and smart contracts are used in healthcare, financial services, and transportation. There is a demand for strong security due to constant increase in industrial involvement and the financial holdings with cryptocurrency. Security vulnerabilities has led to several attacks and exploits on Ethereum. One example was the exploitation of the reentrancy vulnerability with the DAO attack which led to about \$60 million being stolen. Tools have been created to analyze smart contracts and detect their vulnerabilities, such as SmartCheck, MythX, and Securify. The goal of this project is to take the existing tool Securify and build upon it so it will detect integer overflow vulnerabilities. Integer overflow vulnerabilities was the type of vulnerability exploited in the BeautyChain (BEC) smart contracts which caused the coins to drop to about 5 cents from 30 cents per coin. Securify \cite{Securify} able to detect 38 identified vulnerabilities, but is not able to detect integer overflow vulnerabilities.
+
+\section{Literature Review}
+
+The paper "Static Analysis of Integer Overflow of Smart Contracts in Ethereum" \cite{Static} has studied and analyzed 11 kinds of integer overflow features. There are 4 types of addition overflow, 4 types of subtraction overflow, and 3 types of multiplication overflow. The paper describes the circumstances all of these happen. The authors of the paper designed their own tool and were able to find about a total of 400 instances of integer overflow when they scanned the source code of 7,000 smart contracts. They compared their tool to several others after successfully being able to detect integer overflow vulnerabilities. Tools like Securify, SmartCheck, and Oyente weren't able to detect any integer overflow vulnerabilities. VaaS is able to detect some, but can't complete detection for complex smart contracts. VaaS also has some limitations such as only four free uses a day and isn't suitable for mass detection. Besides VaaS, MythX is also able to identify integer overflow vulnerabilities. The majority of tools will provide specifically what vulnerabilities they are able to detect. They use the SWCID \cite{SWCReg} which is a registry that identifies vulnerabilities in smart contracts, give them IDs, explains what they are, how they happen, and examples of what the issue looks like in the code. Securify \cite{Securify} is a security analyzer for Ethereum smart contracts. It is scalable, fully automated, and currently supports 38 vulnerabilities.  It consists of two main steps. It analyzes the contract's dependency to extract precise semantic information from the code then it checks compliance and violation patterns that satisfy conditions for proving if a property holds or not. The benefits they found from evaluation was that it analyzes all contract behaviors to avoid undesirable false negatives, reduces the user effort in classifying warnings into true positives and false alarms by guaranteeing that certain behaviors are actual errors, it supports a new domain-specific language that enables users to express new vulnerability patterns as they emerge, and its analysis pipeline is fully automated using scalable, off-the-shelf Datalog solvers. Their GitHub hasn't seemed to be updated for about a year. It also supports all contracts written in Solidity 0.5.8 to current which is 0.8.2.
+
+\section{The Problem}
+
+As stated in the previously mentioned paper and also supported by Securify's GitHub, Securify is not able to detect integer overflow vulnerabilities. There are 11 identified types of integer overflow. \\
+\\
+Four Types of Addition Overflow
+\begin{enumerate}
+    \item Source code contains a statement that a variable is equal to the integer parameter plus another integer variable other than itself.
+    \item Source code contains a statement that an integer variable or a state variable of mapping type is equal to itself plus the integer parameter or the variable whose value is equal to the integer parameter multiplied by the integer variable.
+    \item Source code includes a statement that an integer variable or a state variable of the mapping type plus equal to the integer parameter.
+    \item Source code contains a statement that the integer parameter or the variable whose value is equal to the integer parameter multiplied by integer variable plus another integer variable whose result is less than or equal to the integer state variable or the balance of the contract or an account address.
+\end{enumerate}
+\\
+Four Types of Subtraction Overflow
+\begin{enumerate}
+    \item The first three types of subtraction overflow features are similar to the first three types of addition overflow features by simply replacing the addition operator with the subtraction operator. The form of checking its range is inconsistent.
+    \item The loop body of the smart contract source code contains a statement that an integer variable or a state variable of the mapping type minus equal to the number or an integer constant.
+\end{enumerate}
+\\
+Three Types of Multiplication Overflow
+\begin{enumerate}
+    \item Source code contains a statement that an integer variable is equal to the integer parameter multiplied by another arbitrary form of integer data, and do not contain any form of statement that check whether its operation is out of range.
+    \item Source code contains a statement that the integer parameter is multiplied by another integer variable whose result is less than or equal to the integer state variable or the balance of the contract or an account address.
+    \item Source code contains a statement that an integer variable multiply equal to the integer parameter or that a state variable of the mapping type multiply equal to the integer parameter.
+\end{enumerate}
+
+None of the types of features in this paper contain any form of statement that checks whether its operation is out of range. The features contain an integer parameter or , because the integer parameter can be manipulated manually when the function is called. The attacker can construct a large parameter value so that the results of the arithmetic operation exceed the range. Similarly, is controllable. \cite{Static}
+
+\subsection{Methodology}
+
+Securify is almost entirely done in Python and their source code is publicly available on GitHub \cite{SecurifyGH}. To add integer overflow to this list, we will need python implementation of the data used in the Static Analysis of Integer Overflow of Smart Contracts in Ethereum paper. This paper also has a GitHub for their test cases and other information \cite{StaticTestCases}, but they don't have anything for the tool they created to test their analysis. SWCRegistry has the IDs of the integer overflow and test cases. If correctly implemented, we can compare the analysis of the updated version of Securify and the version of Securify that does not currently support integer overflow. Etherscan and the testnets will be used further into the project to get analysis of non-testcases. 
+
+\subsection{Resources Required}
+
+\begin{itemize}
+\item Etherscan: Ethereum block explorer \cite{Etherscan}
+\item Solidity: Smart Contract programming Language. Used for Ethereum smart contracts. \cite{Solidity1,Solidity2}
+\item Securify: Static analysis tool that identifies weaknesses in smart contracts.
+\item GitHub
+\item Python
+\item Ropsten: Ethereum Testnet \cite{Ropsten1,Ropsten2,Ropsten3,Ropsten4}
+\item Kovan: Ethereum Testnet \cite{Kovan1,Kovan2,Kovan3}
+\item Rinkeby: Ethereum Testnet \cite{Rinkeby1,Rinkeby2}
+\end{itemize}
+
+Solidity may end up not being used or necessary, but for the mean time it could be beneficial with reading and understanding the smart contract source code.
+
+\subsection{Timeline}
+
+\begin{tabular}{|c|p{4in}|}
+\hline
+By March 20th           & The final project write up should be done. It will clearly layout the background of the area, the issue to be approached, all of the resources required, the solution, the timeline, and the references of anything that will be used in the advancement of the solution.                                 \\ \hline
+March 21st to 27th      & I will have thoroughly studied the Securify and Static Analysis of Integer Overflow of Smart Contracts in Ethereum papers and have good notes on them. I will start reading the GitHubs if I get those done before the end of the week                                                                    \\ \hline
+March 28th to April 3rd & Since the Securify paper is lengthy, if any more work on the paper is necessary I will finish it first. This will be for studying the GitHubs of both papers and understanding the code. I will also start a tutorial of Solidity to help with understanding the source code of Ethereum smart contracts. \\ \hline
+April 4th to 10th       & Add the 4 types of addition integer overflow to Securify's detection. Test the tool on some of the test smart contracts provided by the Static Analysis of Integer Overflow of Smart Contracts in Ethereum GitHub.                                                                                        \\ \hline
+April 11th to 17th      & Add the 4 types of subtraction integer overflow to Securify's detection. Test the tool on some of the test smart contracts provided by the Static Analysis of Integer Overflow of Smart Contracts in Ethereum GitHub.                                                                                     \\ \hline
+April 18th to 24th      & Add the 4 types of multiplication integer overflow to Securify's detection. Test the tool on some of the test smart contracts provided by the Static Analysis of Integer Overflow of Smart Contracts in Ethereum GitHub.                                                                                  \\ \hline
+April 25th to May 1st   & Final tests and analysis of the tool's efficiency on detecting integer overflow vulnerabilities. This will include comparisons with the original Securify and MythX which also detects integer overflow vulnerabilities.                                                                                  \\ \hline
+\end{tabular}
+
+\printbibliography
+
+\end{document}

@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\title{Notes 3}
+\author{CPSC361,
+        Tanner Hammond}
+\date{September 2021}
+
+\begin{document}
+
+\maketitle
+
+9/13 Class Notes:\\
+Instead of just doing commands like:\\
+mkdir -p A/B/C/D\\
+cd A/B/C\\
+cd /usr/local\\
+cd /tmp\\
+cd $\sim$/A/B/C\\
+We can use pushd and popd:\\
+pushd  A/B/C\\
+pushd /usr/local\\
+pushd /tmp\\
+This will create a stack with /tmp /usr/local $\sim$A/B/C $\sim$ on it. The command dirs will show you the full stack. Popd will remove the first one from the stack, which is the directory you are currently in, and take you back to the new first one on the stack. Pushd +n and -n will change directories by rotating the stack. +n will rotate the stack from the top of the stack, and -n from the bottom. Pushd and popd are under the man page for bash.\\
+
+man useradd and man adduser. adduser is the one recommended for admins.\\
+
+We then talked about HW3 and the structure of the script and files.\\
+
+groups -Prints out a list of the groups the user is in.\\
+Umask and how to change the default permissions for files. If you enter it in the command line, it will only stay for during that terminals use.\\
+
+9/15 Class Notes:\\
+
+Briefly went over the Hw3 pdf to make sure everything was correct and went over the structure again.\\
+
+We're going to install Ubuntu on computers on Monday. We're just going to do the default Ubuntu 20.04.3 Desktop and play around with it a bit. We will eventually install it a second time to customize and play with partitioning. So in class we downloaded the iso and then used Disk image writer to create a bootable usb drive for Ubuntu.\\
+
+There are 2 tutorials on inquire for awk and sed.
+
+\end{document}

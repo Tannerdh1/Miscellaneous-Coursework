@@ -1,0 +1,29 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+\title{Proceeding Summaries 4}
+\author{Tanner Hammond}
+\date{February 2021}
+\addbibresource{references.bib}
+\begin{document}
+
+\maketitle
+
+\section{ACE: Asynchronous and Concurrent Execution of Complex Smart Contracts \cite{10.1145/3372297.3417243}}
+
+This paper introduces a system called ACE that improves upon smart contracts. Smart contracts are an important extension upon blockchains as seen with Ethereum. Smart contracts allow contract participants to load the blockchain-based currency to a contract-controlled account. The contract's code defines the conditions which the funds will be transferred out of the contract. Some advantages of smart contracts is the improved transparency, should enable arbitray financial applications on the blockchain, and contract execution is controlled by a large permisionless system. To prevent delays, Ethereum uses a metric called gas to measure execution complexity and will abort if it surpasses the limit. The goal of ACE is to increase per-block execution limits and to enable safe execution of more complex smart contracts while maintaining transparency and good liveness. ACE executes contracts asynchronously offchain and the execution is performed by a set of service providers appointed by the contract's issuer. This allows complex contracts without slowing down and increases trust as the contract issuer can choose which service providers they desire. ACE also allows more flexible verification as long as a certain amount of providers report the same result. It also supports cross-partition transactions which enables safe and efficient execution of contracts that interact across service provider boundaries. ACE also speeds up transaction processing by allowing service providers to use tentative contract states that are not yet part of the chain. ACE doesn't provide the same liveness guarantees as Ethereum, but it provides a strong and adjustable liveness guarantees, allows more complex contracts, and is flexible with it's trust model and safe concurrency control.
+
+\section{Investigating MMM Ponzi Scheme on Bitcoin \cite{10.1145/3320269.3384719}}
+
+This paper focuses on the Ponzi schemes used by cybercriminals to scam people of their cryptocurrency, mainly Bitcoin. Cybercriminals exploit the decentralized aspects of cryptocurrencies to evade financial regulations and other criminal activities such as fraud and money laundering. In just the first half of 2019, over 4 billion dollars worth of cryptocurrencies were lost due to thefts and scams. The use of cryptocurrencies makes investigations more difficult and the current techniques are ineffective. This paper presents a method by linking and analyzing data collected from public sources such as Bitcoin addresses. They gathered a little more than 15,000 addresses associated with MMM Ponzi schemes and extracted their transactions. With these transactions, they analyzed the lifecycle of the ponzi scheme and the money flow. In about 5 months, about 41\% of the members never made a profit which led to the collapse of the scheme. Most of the deposits and withdrawals, average about 88\%, were with unknown addresses. For the addresses were identified were mostly tied with exchanges. These ponzi schemes have short life spans, but the issue is identifying these scams. They discuss using data mining and machine learning to identify metrics that could help block these transactions. There is also a user privacy issue since some of the innocent victims might have their identities revealed and associated with participation in these acts.
+
+\section{CLAPS: Client-Location-Aware Path Selection in Tor \cite{10.1145/3372297.3417279}}
+
+This paper focuses on attacks on the anonymity of Tor. The most effective and successful way of defeating the anonymity of Tor is to run a traffic correlation attack. In this, the attacker observe the connection between a user and the guard and its connection between the destination and the exit. Their relay strategy is critical in limiting the probability that an attacker could see both. One approach is to consider the user's location when choosing relays to avoid sending traffic over distant or dangerous paths. This however could possibly leak information about the user's location and allows attackers to place relays in location that yield a higher chance of being selected. It also has to be considered if any possible solutions will cause any performance problems. With basing relays off of the user's location, it could mess with the load balancing so some could become overloaded. This paper introduces CLAPS, a framework for client-location-aware path selection algorithms in Tor. CLAPS allows optimization path selection to get primary-location and still keeping in mind security and performance. CLAPS also introduces tools for load balancing, preventing leaking of user locations, and a method to bound the risk of relay-placement attacks. Compared to two other proposals, Counter-RAPTOR and DeNASA, there is improvements in security and performance compared to the loss in performance of the other two proposals. CLAPS can be configured to achieve any desired limit on the amount of information leaked and a configurable maximum advantage from maliciously placing relays. They also discovered performance and security problems in the current entry guard design and wrote a proposal for those.
+
+\section{Next 3 Papers}
+\item Algorand: Scaling Byzantine Agreements for Cryptocurrencies
+\item Whispers on Ethereum: Blockchain-based Covert Data Embedding Schemes
+\item ÆGIS: Shielding Vulnerable Smart Contracts Against Attacks
+\printbibliography
+\end{document}

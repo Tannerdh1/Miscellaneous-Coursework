@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Notes 1}
+\author{CPSC361,
+        Tanner Hammond}
+\date{September 2021}
+
+\begin{document}
+
+\maketitle
+
+Class Notes from Wednesday 9/1:
+
+Grep- use to search for particular strings in files. Ex: grep bool useString.cc to find the word bool in the file useString.cc
+
+grep -i String use String.cc $|$ grep ostream. -i ignores case distinctions.
+
+wc- word count. Ex: 14(lines) 58(words) 502(characters)
+
+man wc- give manual of word count. Manuals have the description of the command, how to use it, and options for the command. Such as -l for the ls command. Everything has a manual page so they're useful when learning more about specific commands.
+
+ctrl-d is the end of file command.
+
+/ is a for searching in the manual pages.
+
+$\#$!/bin/sh - basic shell
+
+example of shell script:\\
+#!/bin/sh\\
+    for f in 'ls'; do\\
+    echo \$f;\\
+done
+
+\end{document}

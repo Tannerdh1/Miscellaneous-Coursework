@@ -1,0 +1,106 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter this block of commands.  If you're proficient at LaTeX, you may include additional packages, create macros, etc. immediately below this block of commands, but make sure to NOT alter the header, margin, and comment settings here. 
+\documentclass[12pt]{article}
+\usepackage{amsmath,amsthm,amssymb,amsfonts, enumitem, fancyhdr, color, comment, graphicx, environ, algorithm, algpseudocode}
+
+
+%\pagestyle{fancy}
+%\setlength{\headheight}{65pt}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{sol}
+    {\emph{Solution:}
+    }
+    {
+    \qed
+    }
+\specialcomment{com}{ \color{blue} \textbf{Comment:} }{\color{black}} %for instructor comments while grading
+\NewEnviron{probscore}{\marginpar{ \color{blue} \tiny Problem Score: \BODY \color{black} }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter this block.
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Homework \#0 \\ CPSC 250 \\ Due: In class, Friday the 30th}%replace X with the appropriate number
+\date{}
+
+\maketitle
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{1(1)} 
+In your words explain what an algorithm is.
+\end{problem}
+\begin{sol}
+An algorithm is a rule set or formula people use in calculations.
+\end{sol}
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{2(1)}
+Write two of your favorite formulas in math mode. For each formula 
+briefly state its purpose. (Nothing too elaborate, I'm just testing your ability 
+to use math mode.)
+\end{problem}
+\begin{sol}
+\begin{itemize}
+\item Pythagorean Theorem- a$^2$ + b$^2$ = c$^2$ \newline
+  The Pythagorean Theorem is a basic, but necessary formula used in often in many math classes. It is used to find the length of a side of a triangle as long as you have two of the sides.
+\item d/du(x$^n$) = nx$^{n-1}$ \newline
+  This is the derivative of a number to the n$^{th}$ power. This is such a simple problem, but is a gateway to much more complicated problems in calculus.
+\end{itemize}
+\end{sol}
+
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{3(1)}
+Use $\Sigma$ and $\Pi$ to express the following sums and products.
+\end{problem}
+\begin{sol}
+\begin{itemize}
+\item Example: $1 + 2 + \cdots + n = \Sigma_{i=1}^{n} i$ \\
+      Your turn: $1^2 + 2^2 + \cdots + n^2 = \Sigma_{i=1}^{n} i^2$
+\item Example: $1 \times 2 \times \cdots \times n = \Pi_{i=1}^{n} i$ \\
+      Your turn: $1 \times 3 \times \cdots \times 2n+1 = \Pi_{i=1}^{n} i+$
+\end{itemize}
+\end{sol}
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{4(1)} Replace the following simple formula with an elaborate
+formula. It doesn't have to be a real formula. Don't explain the purpose
+of the formula. It should have at least four variables and use at least
+one of the following: addition, subtraction, multiplication, exponentiation,
+sums ($\Sigma$), and products ($\Pi$). This is meant to introduce display
+math mode.
+\end{problem}
+\begin{sol}
+\[\Sigma_{i=1}^n i^{xy2}\]
+\end{sol}
+
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{5(1)}
+Write an algorithm that takes an array $A$, its size $n$ and returns the
+sum of the numbers in the Array.
+
+\begin{sol}
+ \Procedure{ArrayLength}{$A$}\Comment{Sorts the array $A$ and returns the length}
+ \State{Alength = 0}
+ \For{$i =1$ to $A.\textrm{length}$}
+   \State {Alength= Alength + 1}
+ \EndFor
+ \State {return Alength}
+ \EndProcedure
+\end{sol}
+
+\bigskip
+\noindent
+
+\end{problem}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter anything below this line.
+\end{document}

@@ -1,0 +1,31 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+\title{Proceeding Summaries 6}
+\author{Tanner Hammond}
+\date{February 2021}
+\addbibresource{references.bib}
+\begin{document}
+
+\maketitle
+
+\section{Fail-safe Watchtowers and Short-lived Assertions for Payment Channels \cite{Failsafe}}
+
+Scalability is a big limitation for a lot of current blockchain systems. Platforms like Bitcoin or Ethereum can handle a few to several transactions a second, but if they were able to handle high transaction volumes then they could be more likely to achieve mass adoption. Along with better consensus algorithms being proposed, payment channels have emerged. Payment channels and involve on-chain smart contracts for channel management while regular transactions are exchanged off-chain. Untrusting parties are able to transact off-chain simply and fast. Parties can close channels by sending the last statement to a smart contract to verify the statement is signed by both parties and acts accordingly. Disputes are resolved by the contract itself accepting the freshest message. In this setting, a party has to be online to detect and prevent misbehavior. To get around the always online assumption, outsourcing arbitration to watchtowers was proposed. These are third parties that are contracted by parties for every transaction. Watchtowers know the current off-chain payment state and monitors the on-chain state and will be able to trigger dispute processes in the case of misbehavior. However, they need to observe every channel contract separately and are not fail safe which allows misbehavior when they are unavailable. This paper proposes fail-safe watchtowers. Instead of watching channel contracts, they observe and assert off-chain transactions, and periodically sends a message to the blockchain. To close a channel, a party has to confirm its state with the information submitted by the watchtower. Sending positive information eliminates long timeouts where watchtowers send only negative information. Watchtowers incentivizes to confirm or reject given states as soon as possible. Quick channel terminations are implemented for when watchtowers are online, longer timeouts will be triggered when the watchtower is offline, and allows watchtowers to scale better. They analyzation of watchtower schemes on payment channels is usually ineffective. To improve security, short lived assertions are brought forward to allow channel contracts to distinguish fresh and stale assertions to process them accordingly. They plan to investigate fail-safe watchtowers publishing current channel states with a randomized probabilistic set implementations instead of a bitmap.
+
+\section{SmartWitness: A Proactive Software Transparency System using Smart Contracts\cite{Smart}}
+
+The software supply chain involves many actors in  the process and unfortunately it is common for users to install malware or vulnerable software. These actors' actions in the process are not visible and accountable. Security services provide an essential role in identifying and attempting to end the distribution of these software, but are typically late in the process. This paper focuses on the question of can a secure, dynamic, proactive, and transparent software distribution system be created. It is integrated with a blockchain plator that requires actors to record all of their actions publicly. Developers will digitally seal software packages by registering them in a distributed ledger called SmartWitness. SmartWitness also has a rating system that allows security providers to score the security of the packages based on findings and vulnerabilities. It also allows security providers to singly revoke a sealed package to stop its distribution without affect other packages and preventing malware spread. Users are capable of verifying that a developer transparently releases a package and makes sure that security providers review it. They plan to study the implication of including SmartWitness into other systems like Android PlayStore, incorporating hardware-based solutions to define and enforce security policies in the software installation proces, and proposing decentralized governance with autonomous reproducibility for vulnerability reporting. 
+
+\section{Static Analysis of Integer Overflow of Smart Contracts in Ethereum \cite{Static}}
+
+The security issues of smart contracts have frequently emerged over the recent years. We have seen the DAO attack, the Parity wallet vulnerability, and the vulnerability in BEC smart contracts. These attacks have caused substantial losses, so the challenges are enormous. Tools for detecting security vulnerabilities in smart contracts have been proposed, but most of these tools cannot detect integer overflow vulnerabilities and charge. Integers overflow is a high-risk vulnerability that caused the BEC attack. Integers of the Ethereum smart contract have a fixed size and its step size is incremented by 8 bits. If the range of the integer is exceeded it will cause an overflow. There are three types of overflow which are addition, multiplication, and subtraction. This paper summarized 11 different integer overflow features and defines them as 83 XPath patterns by studying and analyzing the integer overflow. They then designed a static detection tool and tested it on 7,000 verified smart contracts and detected 430 smart contracts with integer overflow vulnerabilities. While this tool has high detection efficiency, some unknown integer overflow vulnerabilities can't be detected. The future for this is studying more vulnerability types of the Solidity smart contract to add more detection patterns. Also future studying is required for other languages. 
+
+\section{Next 3 Papers}
+\item Securing smart contract with runtime validation
+\item A Personal Data Determination Method Based On Blockchain Technology and Smart Contract
+\item How effective are smart contract analysis tools? evaluating smart contract static analysis tools using bug injection
+
+
+\printbibliography
+\end{document}

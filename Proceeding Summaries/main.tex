@@ -1,0 +1,29 @@
+/-\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+\title{Proceeding Summaries}
+\author{Tanner Hammond }
+\date{February 2021}
+\addbibresource{references.bib}
+\begin{document}
+
+\maketitle
+
+\section{TEMPES`T Comeback: A Realistic Audio Eavesdropping Threat on Mixed-signal SoCs \cite{CH20}}
+
+This paper focuses on a new TEMPEST threat that is more practical and effective than before. TEMPEST attacks analyze a system's physical leakages of EM wave, sound, and vibration to extract secret information. TEMPEST comes from the name of the project done by the US government starting in the 1960s. However, due to the miniaturization, system improvements, and reduced power consumption the amount of EM emanations have been significantly reduced. Due to difficulty of TEMPEST attacks, a lot of research then into EM SCCA (Side-channel cryptographic attack). Like traditional TEMPEST attacks, EM SCCA has several limitations such as short key-recovery distance, fragileness to interferences, difficulty in hardware cryptography and some others. There has been one thing to overcome these limitations and is a major focus, the switching regulator (SWREG). SWREG noises are dense, wideband, and static and these make characteristics make it possible for an audio TEMPEST. These attacks are also long range, real-time, avoids interference, and irrelevant to cryptography implementations.
+
+\section{Examining Mirai's Battle over the Internet of Things \cite{GR20}}
+
+This paper goes over the Mirai botnet and its effect on the Internet of Things (IoT). In 2016 the Mirai botnet made wide-sweeping DDoS attacks that eventually exceeded 1 Tbps. These attacks crippled major Internet service providers and infrastructure. Not long after these attacks, the source code for Mirai was publicly released online which led to many Mirai-based variants. All of the variants are fighting for the control the number of vulnerable IoT devices. These botnets search targets using randomly generated IP addresses and continues to spread. This research used about 7,500 IoT honeypots that received about 300,000,000 compromisation attempts from infected IoT devices. Due to the flaws in the designs of the botnets random number generators, they are able to break the seeds based on information from an incoming packet. This can help us learn about the lifetime of the infection and helped us learn that without the continuous pushes from bootstrapping, Mirai and the other botnets would die out.
+
+\section{Slimium: Debloating the Chromium Browser with Feature Subsetting\cite{QI20}}
+
+This paper brings up the issue of attempting to debloat the Chromium browser for security safety. Chromium was created to be a lightweight browser, but of course had to change due to the number and demands of the users. This has led to Chromium include a lot of third-party software and become a complex, feature rich browser. The issue that can come of this is the large code base having some vulnerabilities exposed and attacked. Code debloating can be a way to reduce attack surface and vulnerability by removing any unnecessary code. The downside is that it can be quite difficult to remove this code while preserving the needed code. For debloating purposes, some works have used binary analysis while some recent ones have been using machine learning techniques. Slimium would have 3 phases which is feature-code mapping, website profiling, and then binary rewriting.
+
+\section{Next 3 Papers}
+\item Speculative Probing: Hacking Blind in the Spectre Era
+\item LadderLeak: Breaking ECDSA with Less than One Bit of Nonce Leakage
+\item Bypassing Tor Exit Blocking with Exit Bridge Onion Services
+\printbibliography
+\end{document}

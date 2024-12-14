@@ -1,0 +1,147 @@
+\documentclass{article} 
+
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\setlength{\topmargin}{-0.25in}
+\setlength{\headsep}{0.0in}
+\setlength{\textheight}{8.7in}
+
+\usepackage{enumerate} 
+\newcommand{\nat}{\mathbb{N}}
+
+\title{Test 1}
+\author{CPSC450, Fall2020}
+\date{Assigned: Monday, September 28, 2020\\
+Due: Sunday, October 4, 2020, by 10pm.}
+
+\begin{document}
+\maketitle 
+\hrule
+\medskip
+This is an open book, open notes, and open course website test. There
+are 9 questions, and the maximum points are 60.
+\medskip
+\hrule
+\medskip
+
+\begin{enumerate} 
+
+\item Let $\equiv_t$ be the binary relation over $\nat$
+  defined by $n \equiv_t m$ if, and only if $n \mbox{ mod } t = m \mbox{
+    mod } t$. Prove that for all $t \geq 2$, $\equiv_t$ is an
+  equivalence relation.\\
+  \phantom{junk}\hfill{\textbf{(5 points)}}
+  \newline To prove that it is an equivalence relation, it needs to be reflexive, symmetric and transitive.
+  \newline Reflexivity: Let n $\in \nat$, then n mod t = m n mod t. Hence n $\equiv_t$ m. $\forall n \in \nat$. Thus $\equiv_t$ is reflexive.
+  \newline Symmetry: Let m,n $\in \nat$ and n $\equiv_t$ m. Then nmodt = mmodt.
+  \newline $\rightarrow$ m modt = n modt
+  \newline m $\equiv_t$ n.
+  \newline This prove that $\equiv_t$ is symmetrical.
+  \newline Transitivity: Let m,n,0 $\in \nat$ and m $\equiv_t$ and n $\equiv_t$ 0 to show m $\equiv_t$ 0. Since m $\equiv_t$ n and n $\equiv_t$ 0, m modt = n modt and n modt = 0 modt. Thus, m modt = 0 modt and m $\equiv_t$ 0. Thus $\equiv_t$ is transitive.
+  \newline Hence $\equiv_t$ is an equivalence relation. Since t $\leq$ 2 is an arbitrary number, $\equiv_t$ is an equivalence relation for any t $\leq$ 2.
+
+\item \textbf{Definition} For any total function $f: \nat \to \nat$,
+  for $k > 0$,
+    $i \geq k$ is called a \emph{$k$-saddle point of $f$} iff
+    \[
+    f(i) = \sum_{j=1}^k [f(i-j) + f(i+j)].
+    \]
+
+    Let $F$ be the set of total functions, $f: \nat \to \nat$ such
+    that for each $f$, for some $i \geq 2$, $i$
+    is a 2-saddle
+    point of $f$.
+    Prove or disprove: $F$ is denumerable.\\
+    \phantom{junk}\hfill{\textbf{(5 points)}}
+    \newline Suppose that i is a 2-saddle point of f. Therefore $f(i) = \sum_{j=1}^k [f(i-j) + f(i+j)].$. Then set of all function of the form where f(i) = f(i-1)+ f(i+1) + f(i-2) + f(i+2)... are in F. ${f(1), f(2),...,f(i-1),f(i+1)}$ is uncountable. Thus for each i there must be an uncountable number of function such that i is a 2-saddle point of f.
+
+  \item Prove or disprove: Every denumerable set $S$ has a countably
+    infinite number of subsets $S_0$, $S_1$, \ldots, such that
+    \begin{enumerate}
+    \item for each $i$, $S_i$ is countably infinite, and
+    \item for each $i \not= j$, $S_i \cap S_j = \emptyset$.
+    \end{enumerate}
+    \hfill{\textbf{(5 points)}}
+    \newline A. Suppose S is a denumerable set.
+    \newline B.
+
+\item Give a recursive definition of the set of ancestors of a node
+  $x$ in a tree. (See Section 1.8 for definitions of tree and
+  ancestor.) \hfill{\textbf{(5 points)}}
+  \newline Basic Step: The node is empty or the only node in the tree.
+  \newline Recursive Step: 
+  \newline Closure Step: 
+
+\item Let $\mathcal{S}$ be the set of
+    strings, $s$, over
+    $\{a, b\}$ such that $s$ has an
+    even number of $a$'s or an odd number of $b$'s. 
+    (Note that $s$ need not be made up \emph{only} of $a$s or
+    \emph{only} of $b$s.) \hfill{\textbf{(5 + 5 = 10 points)}}
+    \begin{enumerate}
+
+    \item Give a recursive definition for $\mathcal{S}$.
+    \newline i: a in S.
+    \newline ii: If s is in S then so are bs and sb.
+    \newline iii: If s is in S then so is asa.
+    \newline iv: No other strings are allowed by the rules in S.
+
+    \item Give a regular expression that represents the set
+      $\mathcal{S}$.
+      \newline $(aa)^*b^*(bb)^*$
+
+    \end{enumerate}
+    
+\item Use the regular expression identities in Table 2.1 in the text
+  book to establish the identity: \hfill{\textbf{(5 points)}}
+\[
+\mathbf{(a \cup b)^*} = \mathbf{(b^*(a\cup \lambda)b^*)^*}.
+\]
+\newline $(a \cup b)^*$ = $(a^* \cup b^*)^* = (b^*ab^* \cup b^*b^*)^*$
+\newline = $(b^*(ab^* \cup b^*))^*$
+\newline = $(b^*(a\cup \lambda)b^*)^*$
+
+\item Write a context free grammar over $\{a, b\}$ that generates the
+  language $\{ a^mb^n \mid 0 \leq n \leq m \leq 3n
+  \}$. \hfill{\textbf{(5 points)}}
+  
+  \newline $S \rightarrow aSb|aaSb|aaaSb| \lambda$
+
+\item Consider the grammar $G$ over $\{ a, b \}$ given by the rules:
+  \begin{eqnarray*}
+    S &\rightarrow& aSa \mid aBa\\
+    B &\rightarrow& bB \mid b
+  \end{eqnarray*}
+  Write the conditions
+  you would use to show that
+  \[
+  L(G) \subseteq \{ a^nb^ma^n \mid n, m > 0
+  \}.
+  \]
+  \hfill{\textbf{(5 points)}}
+  \newline $a^+b^+a^a$
+
+\item Consider the grammar $G$ over $\{ a, b, c, d \}$ given by the rules:
+  \begin{eqnarray*}
+    S &\rightarrow& AB \mid BCS \mid BDc \\
+    A &\rightarrow& aA \mid C \\
+    B &\rightarrow& bbB \mid b \\
+    C &\rightarrow& cC \mid \lambda \\
+    D &\rightarrow& dD \mid DA \mid ED \\
+    E &\rightarrow& Dd \mid D \mid \lambda
+  \end{eqnarray*}
+
+  Use the CYK algorithm to determine if $aacbb \in L(G)$. Clearly show
+  all your steps. \hfill{\textbf{(15 points)}}
+  \newline aacbb 
+  \newline aacCbb $\rightarrow$ c comes from C's cC
+  \newline aaCbb $\rightarrow$ cC is derived from C
+  \newline aaAbb $\rightarrow$ C is derived from A
+  \newline aAbb $\rightarrow$ the a is from A's aA
+  \newline Abb $\rightarrow$ aA is derived from A
+  \newline The issue comes from bb. bb can only be derived from B which goes to bbB. B can only go to bbB and b, so there is no way of getting another B and no way to get rid of a B without making a third b. So aacbb is not in L(G).
+\end{enumerate}
+\end{document}

@@ -1,0 +1,58 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Notes 6}
+\author{Tanner Hammond, CPSC 361}
+\date{November 2021}
+
+\begin{document}
+
+\maketitle
+
+Class Notes 10/25:\\
+clusterssh/cssh - the ability to ssh into a group of hosts. Also provided a window with the ability to type into all consoles at once. \\
+First had to install openssh-server \\
+form is cssh computer1 computer2 \\
+/etc/hosts  192.168.134 sean to give the ip the alias sean for ease.
+Can also define clusters in /etc/cluster with a tag and a list of hosts. \\
+example from what we were doing in class: group1 sean cameron. \\
+
+
+Class Notes 10/27:\\
+Fully qualified domain name (FQDN): example http://cpsc.roanoke.edu/fall2021/course.html \\
+Port number: example http://cpsc.roanoke.edu:80/ \\
+
+http talks on port 80 by default \\
+https - 443 \\
+ssh - 22 \\
+
+goals: Document root: /Web, port 80 \\
+/PrivateWeb - Document root /PrivateWeb, port 1088 - requires username and password \\
+
+http://192.168.0.131/~username/A.html should go to that user's home directory and show that file (if there). \\
+
+sudo apt-get update && sudo apt-get upgrade \\
+sudo apt-get install apache2 \\
+
+/etc/apache2 - apache2.conf, ports.conf, sites-available/enabled.conf \\
+Got /Web and /PrivateWeb setup during this class, but was still working on the passwords. \\
+I created the directories /PrivateWeb and /Web. In apache2.conf I added Directory parts for /PrivateWeb and /Web. In ports.conf I added listen 1088. I changed the conf file in sites-available for port 80 to have the document root /Web. I created another conf file for port 1088 and the document root /PrivateWeb. I then made it accessible using a2ensite conf-file-name.conf and did sudo service apache2 restart. \\
+Class Notes 11/1:\\
+Got the password to work. In the apache2.conf in the directory section, add to it : \\
+AuthType Basic
+AuthName "Restricted"
+AuthUserFile /var/www/.htpasswd
+Require valid-user
+
+To create the htpasswd file, use sudo htpasswd -c /directory-you-want-to-store-the-htpasswd-files/.htpasswd username. You will then be asked to input the password. The -c is to create the file.\\
+
+For the ~username goal from the last class, we need to use the module mod\_userdir. We also need to create users to test this on, so I created 3 users each with a couple of html files in there to be able to test. \\
+You have to go to mods-available and find userdir.conf and enable it using a2enmod userdir. \\
+Class Notes 11/3:\\
+Setting up the NIS. sudo apt-get install nis. Set the domain name to tannernis. \\
+Before doing anything with the server and clients, had to make sure I had 3 users with home directories in /tannerhome and that they had passwords. \\
+sudo make -f ../makefile all in /var/yp/tannernis. \\
+sudo service nis start. \\
+Sean was the server, Davis and I were clients. As the clients, we had to have our service stopped and wait for Sean to get everything up and the turn it on.\\
+Server has nis service started, clients have ypserv. \\
+\end{document}

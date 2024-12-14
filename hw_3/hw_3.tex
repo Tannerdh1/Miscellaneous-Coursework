@@ -1,0 +1,270 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter this block of commands.  If you're proficient at LaTeX, you may include additional packages, create macros, etc. immediately below this block of commands, but make sure to NOT alter the header, margin, and comment settings here. 
+\documentclass[12pt]{article}
+\usepackage{amsmath,amsthm,amssymb,amsfonts, enumitem, fancyhdr, color, comment, graphicx, environ, algorithm, algpseudocode}
+
+
+
+
+%\pagestyle{fancy}
+%\setlength{\headheight}{65pt}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{sol}
+    {\emph{Solution:}
+    }
+    {
+    \qed
+    }
+\specialcomment{com}{ \color{blue} \textbf{Comment:} }{\color{black}} %for instructor comments while grading
+\NewEnviron{probscore}{\marginpar{ \color{blue} \tiny Problem Score: \BODY \color{black} }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter this block.
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Homework \#3 \\ CPSC 250 \\ Due: Friday, September 27th \\ }%replace X with the appropriate number
+\date{}
+
+\maketitle
+
+
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{1}(15)
+Suppose we have $n$ objects and each object has a serial number field. Each object's serial 
+number is a binary string. We want every object's serial number to be unique. For each of the 
+following number of objects $n$, indicate the minimum number of bits required. Justify each 
+answer.
+
+For example, if we have 5 objects, we need at least 3 bits. With 3 bits we can use the binary 
+strings 000, 001, 010, 011, 100 to label each object. We cannot use 2 bits because there are only 4 length 2 binary strings.
+
+\begin{enumerate}
+ \item $n = 4, \textrm{minimum number of bits } = 3$
+ \item $n = 1023, \textrm{minimum number of bits } = 11$
+ \item $n = 77, \textrm{minimum number of bits } = 8$
+ \item When $n = 5$ do we use all possible bit patterns? No
+ \item When $n = 8$ do we use all possible bit patterns? No
+ \item For what values of $n$ must we use all bit patterns? $2^n - 1$
+ \item Let $f(n)$ be the minimum number of bits required to label $n$ objects. Give a closed
+ from formula for $f(n)$. $2^n$
+\end{enumerate}
+\end{problem}
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{2}(5)
+ Suppose in the previous question we used all capital letters of the alphabet. How many 
+ characters will be required to uniquely label $n$ objects? Justify your answer. 8^n. Each letter requires 8 bits which is a byte.
+\end{problem}
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{3}(10)
+Given integers $p,q$, an interval $[p,q]$ is the set $\{x \in \mathbb{Z}|p \leq x \leq q\}$. An 
+interval $[p_1, q_1]$ is a subinterval of $[p_2, q_2]$ if $[p_1, q_1] \subseteq [p_2, q_2]$. For 
+example, $[-1, 2] = \{-1, 0, 1, 2\}$, $[3, 5] = \{3, 4, 5\}$, $[2, 1] = \{\}$.
+\begin{enumerate}
+ \item How many nonempty subintervals does $[1,n]$ have? Justify your answer.
+ \item For $p \leq q$, how many nonempty subintervals does $[p,q]$ have?
+\end{enumerate}
+\end{problem}
+
+%Copy the following block of text for each problem in the assignment.
+
+\begin{problem}{4}(15)
+
+\begin{enumerate}
+\item Given a length $n$ array of numbers $A$. Give a brute-force algorithm
+that returns the triple $(i,j,s)$. Where $s$ is sum of the numbers in the
+subarray $A[i,j]$, and $s$ is the smallest sum of any subarray of $A$ i.e.,
+it returns the subarray with the smallest sum.
+
+\begin{algorithm}[H]
+\begin{algorithmic}
+\Procedure{Minimum-Sum-Subarray}{$A$}
+  \State min = \infty; \newline
+        \State for(i = 0; i < j; i++){
+        \State if(A[i] < min){
+        \State min = A[i];
+        } 
+    }
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\item What is the time complexity of your algorithm? Briefly justify your answer.
+\newline Time complexity: $ \Theta(n)$
+\newline Justification: It will always have to run through the entire array.
+
+\end{enumerate}
+\end{problem}
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{5}(15)
+Given a 3-dimensional $p \times q \times r$ array $A$. Give an algorithm that sums all the 
+numbers in $A$.
+
+\begin{enumerate}
+\item
+\begin{algorithm}[H]
+\begin{algorithmic}
+\Procedure{3D-Array-Sum}{$A, p, q, r$}
+\State sum = 0; 
+  \State For(i = 0; i < p; i++) 
+    \State \indent For(j = 0; j < q; j++)
+        \State \indent \indent For(k = 0; k < r; k++){
+                    \State \indent \indent \indent sum += A[p, q, r]
+            }
+            \State return sum;
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\item If $p = q = r = n$, what is the runtime of your algorithm? Briefly justify your answer.
+\newline Time complexity: $\Theta(n^3)$
+\newline Justification: It will have to run through
+\end{enumerate}
+
+
+\begin{problem}{6}(25)
+Let $T(n)$ be the runtime of an algorithm on a input of size $n$.
+Give the recurrence relation for each of the following recursive algorithms. Ignore floors
+in your recurrence relation. For example write $T(n) = 2T(n/2) + \Theta(n)$, not
+$T(n) = T(\lfloor n/2 \rfloor) + \Theta(n)$.
+\begin{enumerate}
+ 
+\item
+\begin{algorithm}[H]
+\begin{algorithmic}
+\Procedure{F}{$n$}
+\If{$n = 0$}
+  \State \Return 1
+\Else
+  \State $x = 0$
+  \For{ $i = 1 \textrm{ to } n$ }
+    \State $++x$
+  \EndFor
+  \State F($n-1$)  
+\EndIf
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\noindent
+Answer: $T(n) = T(n-1) + \Theta (1)$
+ 
+\item
+\begin{algorithm}[H]
+\begin{algorithmic}
+\Procedure{F}{$n$}
+\If{$n = 0$}
+  \State \Return 1024
+\Else
+  \State $x = 0$
+  \For{ $i = 1 \textrm{ to } n$ }
+    \State $++x$
+  \EndFor
+  \State F($\lfloor n/2 \rfloor$)  
+\EndIf
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\noindent
+Answer: $T(n) = T(n/2) + \Theta(1)$
+ 
+ \item
+\begin{algorithm}[H]
+\begin{algorithmic}
+\Procedure{F}{$n$}
+\If{$n = 0$}
+  \State \Return 1
+\Else
+  \State $x = 0$
+  \For{ $i = 1 \textrm{ to } n-1$ }
+    \State F($i$)
+  \EndFor 
+\EndIf
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\noindent
+Answer: $T(n) = T(i) + O(n) + \Theta (1)$
+ 
+\item
+\begin{algorithm}[H]
+\begin{algorithmic}
+\Procedure{F}{$n$}
+\If{$n \leq 100$}
+  \State \Return 900
+\Else
+  \State $x = 0$
+  \For{ $i = 1 \textrm{ to } n$ }
+    \For{ $j = 1 \textrm{ to } n$ }
+    \State $++x$
+  \EndFor
+  \EndFor
+  \State F($\lfloor 2n/3 \rfloor$)
+  \State F($\lfloor 4n/5 \rfloor$)
+  
+  \For{ $j = 1 \textrm{ to } n^4$ }
+    \State $++x$
+  \EndFor 
+\EndIf
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\noindent
+Answer: $T(n) =T(4n/5) + T(2n/3) + O(n^4) + O(2)+ \Theta(1)$
+
+\item
+\begin{algorithm}[H]
+\begin{algorithmic}
+\Procedure{F}{$n$}
+\If{$n \leq 100$}
+  \State \Return 900
+\Else
+  \State F($\lfloor n/2 \rfloor$)
+  \State $x = 0$
+  \For{ $i = 1 \textrm{ to } n$ }
+    \For{ $j = 1 \textrm{ to } n$ }
+    \State $++x$
+  \EndFor
+  \EndFor
+  
+  \State F($\lfloor n/3 \rfloor$)
+  
+  \For{ $j = 1 \textrm{ to } \lg n$ }
+    \State $++x$
+  \EndFor 
+  
+  \State F($n-3$)
+\EndIf
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\noindent
+Answer: $T(n) = T(n-3) + T(n/3) + T(n/2) + \Theta(1)$
+ 
+\end{enumerate}
+
+\end{problem}
+
+\end{problem}
+
+
+
+
+
+%Copy the following block of text for each problem in the assignment.
+%\begin{problem}{1}
+%\end{problem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter anything below this line.
+\end{document}

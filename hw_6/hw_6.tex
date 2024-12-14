@@ -1,0 +1,151 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter this block of commands.  If you're proficient at LaTeX, you may include additional packages, create macros, etc. immediately below this block of commands, but make sure to NOT alter the header, margin, and comment settings here. 
+\documentclass[12pt]{article}
+\usepackage{amsmath,amsthm,amssymb,amsfonts, enumitem, fancyhdr, color, comment, graphicx, environ, algorithm, algpseudocode}
+
+
+
+
+%\pagestyle{fancy}
+%\setlength{\headheight}{65pt}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{sol}
+    {\emph{Solution:}
+    }
+    {
+    \qed
+    }
+\specialcomment{com}{ \color{blue} \textbf{Comment:} }{\color{black}} %for instructor comments while grading
+\NewEnviron{probscore}{\marginpar{ \color{blue} \tiny Problem Score: \BODY \color{black} }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter this block.
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Homework \#6 \\ CPSC 250 \\ Due: Monday, October 28th \\ Tanner Hammond}%replace X with the appropriate number
+\date{}
+
+\maketitle
+
+For problems 6,7,8,9 your answer doesn't have to be in latex. You can CLEARLY write/draw it on 
+the printout. You can adjust the white space by changing the number in the vspace following each
+question.
+
+\noindent
+\textbf{Please don't include the figures at the end as part of you submission. Just delete or comment out the included graphics statement. Thanks.}
+
+\begin{enumerate}
+\item (5) Suppose a heap has height $h$, what's the minimum and maximum number of elements in the heap? \newline
+Minimum: $2^h$
+\newline
+Maximum: $2^{h+1} - 1$
+
+\item (10) Prove by induction that a heap with $n \geq 1$ elements has height
+$\lfloor \lg n \rfloor$. Hint: For the inductive step, consider the case where $n$ is an 
+integral (whole number) power of $2$ and the case when it is not.
+
+\item (15) Answer the following question.
+\begin{enumerate}
+\item What part of a min-heap is the largest element stored? Briefly justify your answer. The largest element is store in a leaf, but you can't immediately know which. They have to be checked because of the previous nodes. An example would be that a leaf such as in a binary heap with 9 nodes. Node 9 could be 50 but node 7 could be 75.
+\item Is an array that is sorted in descending order a max-heap? Briefly justify your answer. Yes it is a max-heap because it follows the max-heap property. The root will be the largest element and all of the following nodes will have parents that are greater than it and children that are less. 
+\item In an $n$ element heap, must the element at position $\lfloor n/2 \rfloor + 1$ be a leaf?
+ Briefly justify your answer. Yes it is, starting from $\lfloor n/2 \rfloor + 1$ to n are leaves. They have no children and it is confirmed through math because of the height, lgn, of the heap.
+\end{enumerate}
+
+\item (10) For each of the following arrays, state whether or not each array is a max-heap, min-heap, both, or neither. If it is neither, state the property it violates and give the index to the node that violates the property.
+\begin{enumerate}
+\item $[23,17,14,6,13,10,1,5,7,12]$ Neither, because index 4 violates the max-heap property.
+\item $[1,2,3,2,5,6]$ Min-heap
+\item $[2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]$ Both
+\item $[]$ Neither, it's an empty array so it can't be either
+\item $[9,8,8,7,7,7,7,0]$ Max-heap
+\end{enumerate}
+
+\item(10) In the textbook we used arrays with indexes starting from 1. Rewrite the functions PARENT, LEFT, RIGHT to work with arrays whose indexes start from 0.
+\begin{enumerate}
+\item 
+\begin{algorithm}[H]
+\begin{algorithmic}
+\Procedure{PARENT}{$i$}
+  \State (n-1)/2
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\item
+\begin{algorithm}[H]
+\begin{algorithmic}
+\Procedure{LEFT}{$i$}
+  \State (2*n) + 1
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\item
+\begin{algorithm}[H]
+\begin{algorithmic}
+\Procedure{RIGHT}{$i$}
+  \State (2*n) + 2
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\end{enumerate}
+
+\item (5) Using Figure 6.3 as a model, illustrate the operation of BUILD-MAX-HEAP on the
+array $A = [ 5, 3, 1, 10, 4, 9, 6, 2, 9]$. \newline
+A= [5,3,1,10,4,9,6,2,9] \newline
+A= [5,10,1,3,4,9,6,2,9] \newline
+A= [10,5,1,9,4,9,6,2,3] \newline
+A= [10,5,9,9,4,1,6,2,3]
+
+\item (5) Using Figure 6.4 as a model, illustrate the operation of HEAPSORT on the array
+$A = [5, 1, 2, 5, 7, 1, 0, 8, 4]$.\newline
+A= [5,3,1,10,4,9,6,2,9] \newline
+A= [5,10,1,3,4,9,6,2,9] \newline
+A= [10,5,1,9,4,9,6,2,3] \newline
+A= [10,5,9,9,4,1,6,2,3]
+
+\item (5) Illustrate the operation of MAX-HEAP-INSERT(A, 10) on the heap
+$A = [15, 13, 9, 5, 12, 8, 7, 4, 0, 6, 2, 1]$. \newline
+A=[5,1,2,8,7,1,0,5,4]\newline
+A=[5,8,2,1,7,1,0,5,4]\newline
+A=[5,8,2,5,7,1,0,5,4]\newline
+A=[8,5,2,5,7,1,0,1,4]\newline
+A=[8,7,2,5,5,1,0,1,4]\newline
+A=[4,7,2,5,5,1,0,1]\newline
+A=[7,4,2,5,5,1,0,1]\newline
+A=[7,5,2,5,4,1,0,1]\newline
+A=[1,5,2,5,4,1,0]\newline
+A=[5,1,2,5,4,1,0]\newline
+A=[5,5,2,1,4,1,0]\newline
+A=[0,5,2,1,4,1]\newline
+A=[5,0,2,1,4,1]\newline
+A=[5,4,2,1,0,1]\newline
+A=[1,4,2,1,0]\newline
+A=[4,1,2,1,0]\newline
+A=[0,1,2,1]\newline
+A=[2,1,0,1]\newline
+A=[0,1,1]\newline
+A=[1,0,1]\newline
+A=[0,1]\newline
+A=[1,0]\newline
+A=[0]\newline
+A=[]
+\item (5) Illustrate the operation of HEAP-EXTRACT-MAX on the heap
+$A = [15, 13, 9, 5, 12, 8, 7, 4, 0, 6, 2, 1]$. \newline
+A= [13,9,5,5,12,8,7,4,0,6,2,1] \newline
+A= [13,12,5,5,9,8,7,4,0,6,2,1] \newline
+A= [13,12,8,5,9,5,7,4,0,6,2,1] 
+
+\end{enumerate}
+%Copy the following block of text for each problem in the assignment.
+%\begin{problem}{1}
+%\end{problem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter anything below this line.
+\end{document}

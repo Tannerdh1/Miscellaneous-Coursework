@@ -1,0 +1,59 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Notes 2}
+\author{CPSC361,
+        Tanner Hammond}
+\date{September 2021}
+
+\begin{document}
+\maketitle
+
+9/6 Class Notes:\\
+
+Did a small quiz review for myself to show where I went wrong and list somethings to look at for myself.\\
+
+Wrote the alternatives for the homework problems like \#1 find . -type f$|$ xargs ls -lS $|$ head -1, for 3 could have used awk or sed.\\
+
+Backups: Set one day of the week as a full backup day and every other day as incremental backups (saving only things that have changed since the last day).\\
+
+Setting up a script for this: Full backup is day 0, days 1 through 6 are incremental backups. Also week variables since you only want to keep x weeks of backups.\\
+
+Discussions on how to make backups and the structure we would use.\\
+
+/var/log- syslog is the most current system log. When it becomes too big it copies to syslog.1 and a new syslog is created. When the new one is too big, syslog.1 becomes syslog.2 and syslog becomes syslog.1 and etc.\\
+
+Do similar thing with backups. Lets say for keeping 2 weeks of backups, when finished with Week1, tar it and start week 2. When week2 is finished tar it and start week3. When week 3 is finished, make week 2 week1 and week3  week2 and start the new week in week3.\\
+
+mkdir TestA/X -p creates a directory TestA and a subdirectory named X inside of TestA\\
+
+-u -update - append files which are newer than the corresponding copy in the archive.\\
+
+List of stuff to do more research and test around with: awk, sed, cat, tac, tar, -u, -incremental\\
+
+For testing use dd if=/dev/zero of=testfile bs=1024 count=10240. Creates a file named testfile that's 10mb.\\
+
+9/8 Class Notes:\\
+cat > f, enter contents on command line, ctrl-d. File f will have the contents that was typed on command line.\\
+
+cat, enter contents, prints out to terminal.\\
+
+man -k keyword, shows mans where the usage includes the keyword.\\
+
+cat < f, shows contents of files in the terminal.\\
+
+!! - repeats last command\\
+
+!5:p, returns which command was used 5 commands ago.\\
+
+date +\%w gives days of the week as 0-6 where 0 is Sunday and 6 is Saturday. Today = 'date +\%w'.\\
+
+\$date +\%A, \$\^A\^w replaces the A with w.\\
+
+Brainstorming session for HW \#2 - myBackup structure and myRestore and structure of the Backups folder.\\
+
+echo \$HOME - /home/student/tdhammond\\
+
+tar tzf A.tgz - tzf is for table of contents. Shows the files and subdirectories in the tgz.\\
+
+\end{document}

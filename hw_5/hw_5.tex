@@ -1,0 +1,144 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter this block of commands.  If you're proficient at LaTeX, you may include additional packages, create macros, etc. immediately below this block of commands, but make sure to NOT alter the header, margin, and comment settings here. 
+\documentclass[12pt]{article}
+\usepackage{amsmath,amsthm,amssymb,amsfonts, enumitem, fancyhdr, color, comment, graphicx, environ, algorithm, algpseudocode}
+
+
+
+
+%\pagestyle{fancy}
+%\setlength{\headheight}{65pt}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{sol}
+    {\emph{Solution:}
+    }
+    {
+    \qed
+    }
+\specialcomment{com}{ \color{blue} \textbf{Comment:} }{\color{black}} %for instructor comments while grading
+\NewEnviron{probscore}{\marginpar{ \color{blue} \tiny Problem Score: \BODY \color{black} }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter this block.
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Homework \#5 \\ CPSC 250 \\ Due: Friday, October 11th \\ Tanner Hammond}%replace X with the appropriate number
+\date{}
+
+\maketitle
+
+For problems 1-2, your answers doesn't have to be in latex. You can CLEARLY write/draw it on 
+the printout. You can adjust the white space by changing the number in the vspace following each
+question.
+
+\begin{enumerate}
+\item (5) Using Figure 10.1 (included at the end of this file.) as a model, illustrate the 
+result of each operation in the sequence
+PUSH($S$, 4), PUSH($S$, 3), PUSH($S$, 2), POP($S$), POP($S$), PUSH($S$, 5) and PUSH($S$, 6) on 
+an initially empty stack S stored in array $S[1 \cdots 5]$. \vspace{50px}
+\newline
+$[4]$ \newline
+$[4,2]$ \newline
+$[4]$ Returns 2 \newline
+$[] $Returns 4 \newline
+$[5]$\newline
+$[6]$
+
+\item (5) Using Figure 10.2 (included at the end of this file.) as a model, illustrate the 
+result of each operation in the sequence ENQUEUE(Q,1), ENQUEUE(Q,2), ENQUEUE(Q,3), DEQUEUE(Q)
+DEQUEUE(Q), and ENQUEUE(Q,2) on an initially empty queue Q stored in
+array $[1 \cdots 6]$. \vspace{50px}\newline
+$[1]$ \newline
+$[1,2]$ \newline
+$[1,2,3]$ \newline
+$[2,3]$ Returns 1 \newline
+$[3]$ Returns 2 \newline
+$[3,2]$
+
+\item (5) Each loop iteration of LIST-SEARCH procedure requires two test: one for $x \neq L.nil$
+and one for $x.key \neq k$. Rewrite LIST-SEARCH to eliminate the test for $x \neq L.nil$ in
+each iteration. Recall this is a doubly linked list with a sentinel which has fields
+$prev, next, \textrm{ and } key$. Hint: the sentinel is the key.
+
+\begin{algorithm}[H]
+\begin{algorithmic}
+\Procedure{LIST-SEARCH}{$L, k$}
+  \State $x = L.nil.next$
+  \State $L.nil.key = k$
+  \While{$x.key \neq k$}
+   \State $x = x.next$
+  \EndWhile
+  \State\Return $x$
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\item (10) Write an algorithm that takes a list of parenthesis ([, ], {, }, (, ))
+and returns true if and only if the parenthesis are balanced. A sequence of parenthesis is 
+balanced if every opened parenthesis is matched by its equivalent closing parenthesis. For 
+example ( isn't balanced, since the opened parenthesis isn't closed. (] isn't balanced since
+( isn't closed by its corresponding closed parenthesis. ([]){}()() is balanced since each opened 
+parenthesis is closed by its corresponding closing parenthesis. Your algorithm should return 
+true when given an empty list. It should also be $O(n)$ and use a stack. 
+
+\begin{algorithm}[H]
+\begin{algorithmic}
+\Procedure{IS-BALANCE}{$A$}
+ \State $S$ \Comment $S$ is a stack.\newline
+ for x in A do \newline
+    \indent $if(x=='(') or (x=='{') or (x=='[') then $\newline
+    \indent \indent $s.push(x)$ \newline
+    \indent $else$ \newline
+        \indent \indent if S.pop()  \neq  $)$ or S.pop() \neq  $]$ or S.pop \neq  $}$ then \newline
+          \indent \indent \indent  $return false$ \newline
+        \indent \indent$end if$ \newline
+    \indent $end if$ \newline
+$end for$ \newline
+$if S.size() == 0 then$ \newline
+   \indent $return true$ \newline
+$end if$ \newline
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\item (30) For each of the four types of lists in the following table, what is the asymptotic 
+worst-case running time for each dynamic-set operation listed.
+\begin{center}
+Search: O(n), O(n), O(n), O(n) \newline
+Insert: O(1), O(1), O(1), O(1)\newline
+Delete: O(1), O(1), O(1), O(1) \newline
+Successor: O(n), O(1), O(n), O(1) \newline
+Predecessor: O(n), O(1), O(n), O(1) \newline
+Minimum: O(n), O(1), O(n), O(1) \newline
+Maximum: O(n), O(n), O(n), O(n) \newline
+\end{center}
+
+\item (10)
+\begin{enumerate}
+\item Use the grade-school multiplication algorithm to multiply 10821 by 11409.\newline
+Answer:123,456,789
+\item What is the time complexity of the grade-school multiplication algorithm to multiply two $
+n$-digit numbers? Justify your answer.
+\newline
+Answer:$\Theta(n^2)$
+\newline
+Justification: It's a constant time because it isn't iterating through any structure. It's just a constant function that is done in one line using two ints.
+\item What is the maximum number of digits required by the result of multiplying two $n$-digit 
+numbers?\newline
+Answer: 2n
+\end{enumerate}
+
+
+
+\end{enumerate}
+%Copy the following block of text for each problem in the assignment.
+%\begin{problem}{1}
+%\end{problem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter anything below this line.
+\end{document}

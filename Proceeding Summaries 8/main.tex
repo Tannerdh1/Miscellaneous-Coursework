@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+\title{Proceeding Summaries 8}
+\author{Tanner Hammond}
+\date{February 2021}
+\addbibresource{references.bib}
+\begin{document}
+
+\maketitle
+
+\section{Behavioral simulation for smart contracts \cite{Behavior}}
+
+This paper addresses the scalability challenge in verifying smart contracts and introduces an approach for verifying unannotated smart contracts via automated semantic comparison against annotated smart contracts. This approach is because many smart contracts instantiated on blockchains are variations on a relatively small number of canonical contracts and libraries. With a notion of comparison that implies substitutability, we can amortize the cost of manually annotating the canonical contracts by verifying a number of unannotated contracts. The notion of behavioral refinement relates the input-output behavior of contracts' transactions. By proving that a given contract is a behavioral refine of another, the inheritance of behavioral properties obeys its canonical counterpart's functional properties. Establishing behavioral refinement for unbounded transaction sequences relies on induction. A behavioral simulation relation identifies states of two contracts such that initial states are related, the same transaction applied to related states yields related states and identical effects, and related states are observationally equivalent. This paper's automated verification approach boils down to the synthesis of behavioral simulation relations in two steps: a passive learning step generates candidate simulation relations, and a deductive verification step checks the validity of each candidate. They demonstrate an application of behavioral simulation to smart contracts, develop an algorithm for synthesizing behavioral simulation relations, develop a smart contract benchmark suite including variation of identified canonical contracts, and evaluates the approach, verifying functional properties for dozens of unannotated smart contracts. They plan to eliminate the need to provide example-generation parameters, automate the identification of canonical contracts against which to consider refinements, and relax compatibility requirements on function signatures. 
+
+\section{Inheritance software metrics on smart contracts \cite{Inheri}}
+
+Given the monetary value associated with smart contract transactions, quality assessment and evaluation is vital. Some argue for instant feedback regarding quality control, but another approach is to apply well-established software metrics. Software metrics have been used to determine the quality, maintainability, and testability of programs. Metrics proposed for Solidity have been seen as potentially useful. These metrics may help developers produce improved quality contracts that are easier to test and maintain. There are differences between Solidity and conventional OO programming languages. The immutability imposed on smart contracts by the target blockchain is the prime differentiating factor. Some other differences are the cost of execution and functional limitations of solidity such as the inability to return an array from a function. Developers have found workaround to these limitations such as where inheritance is favored over composition. The differences may require a re-calibration of existing OO metrics when applied to smart contracts. This study evaluates two OO metrics. They use the assertion that Solidity may favor inheritance over composition, we restrict our focus to the inheritance-based metrics. The question the aim to answer is "Does moving from traditional OO programming contexts to Solidity contracts impact inheritance-based practice, as measured by inheritance-based metrics?" In conventional software systems, a high degree of inheritance has linked with greater complexity and more faults, so misuse of such functionalities need to be investigated. While their tests confirmed their hypotheses, it was very limited testing with a small sample of contracts. They plan to continue the study with a larger data set and to expand the metric evaluation.
+
+\section{LATTE: Visual Construction of Smart Contracts \cite{Latte}}
+
+The most popular smart contract programming language is Solidity. It has stringent coding requirements for contract programming. This makes it very challenging for new people, since it and many blockchain platforms are geared toward expert users and lack support needed for easier use by non-experts. This paper presents LATTE (Visual Smart Contract Builder) to visually contract smart contracts in Ethereum using a direct-manipulation interface. It facilitates formulation of simple smart contracts by manipulating visual objects instead of writing Solidity code. It automatically generates the code from a visually-constructed contract. The unique characteristics of the Ethereum blockchain strongly influence the way a smart contract has to be developed compared to common approaches. LATTE is gas-aware and guides users on the gas usage of a contract during its construction. Each instruction executed by EVM has a predefined cost. This feature is paramount in smart contract development as execution of contracts cost real money to users. The goal of LATTE is to make smart contract development accessible to non-programmers, but it can also be used by contract programmers to develop complex contracts by first generating the solidity code of the core features of a contract using LATTE and the augmenting it by coding complex features. 
+
+\section{Next 3 Papers}
+\item EShield: protect smart contracts against reverse engineering
+\item Summary-based symbolic evaluation for smart contracts
+\item Echidna: effective, usable, and fast fuzzing for smart contracts
+
+\printbibliography
+\end{document}

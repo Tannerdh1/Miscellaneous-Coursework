@@ -1,0 +1,242 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter this block of commands.  If you're proficient at LaTeX, you may include additional packages, create macros, etc. immediately below this block of commands, but make sure to NOT alter the header, margin, and comment settings here. 
+\documentclass[12pt]{article}
+\usepackage{amsmath,amsthm,amssymb,amsfonts, enumitem, fancyhdr, color, comment, graphicx, environ, algorithm, algpseudocode}
+
+
+
+
+%\pagestyle{fancy}
+%\setlength{\headheight}{65pt}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{sol}
+    {\emph{Solution:}
+    }
+    {
+    \qed
+    }
+\specialcomment{com}{ \color{blue} \textbf{Comment:} }{\color{black}} %for instructor comments while grading
+\NewEnviron{probscore}{\marginpar{ \color{blue} \tiny Problem Score: \BODY \color{black} }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter this block.
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Homework \#2 \\ CPSC 250 \\ Due: Friday, September 20th \\ Tanner Hammond}%replace X with the appropriate number
+\date{}
+
+\maketitle
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{1}
+$f(n) = \begin{cases}
+      1  & n = 0 \\
+      2f(n-1) & \text{otherwise}
+ \end{cases}$\\
+Compute the value $f$ on the following inputs. Show your work.
+\begin{enumerate}
+\item $f(0) = 1$
+\item $f(3) = 8$
+\item $f(5) = 32$
+\end{enumerate}
+\end{problem}
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{2}
+Use the function in the previous problem to answer the following.
+\begin{enumerate}
+ \item Give a closed form expression for $f$.\\
+ $f(n) = 2^n$.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{3} Let $c$ an arbitrary constant.
+$T(n) = \begin{cases}
+      c  & n = 0 \\
+      T(n-1) & \text{otherwise}
+ \end{cases}$\\
+Compute the value $T$ on the following inputs. Show your work.
+\begin{enumerate}
+\item $T(2) = T(2-1) = T(1) = c$
+\item $T(3) = T(3-1) = T(2) = c$
+\item $T(4) = T(4-1) = T(3) = c$
+\end{enumerate}
+\end{problem}
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{4}
+Use the function in the previous problem to answer the following.
+\begin{enumerate}
+ \item Give a closed form expression for $T$.\\
+ $f(n) = c$.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{5}
+$$T(n) = \begin{cases}
+      c  & n = 0 \\
+      T(\lceil n/2 \rceil) + n & \text{otherwise}
+ \end{cases}$$
+ 
+\begin{enumerate}
+\item What is wrong with the following "recursive" function? \newline 
+    The function will never hit the base case, so it will keep going on forever.
+\item Briefly explain how you will fix it? \newline
+    You can fix this by changing the n = 0 to n \textgreater  0
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{6}
+$$T(n) = \begin{cases}
+      2  & n = 1 \\
+      4  & n = 2 \\
+      T(n-1) + T(n-2) & \text{otherwise}
+ \end{cases}$$
+Compute the value $T$ on the following inputs. Show your work.
+\begin{enumerate}
+\item $T(2) = 4$
+\item $T(3) = T(2) + T(1) = 2 + 4 = 6$
+\item $T(5) = T(4) + T(3) = 10 + 6 = 16$
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{7}
+$$T(n) = \begin{cases}
+      2  & n = 1 \\
+      T(\lfloor 2n/3 \rfloor) + 5 & \text{otherwise}
+ \end{cases}$$
+Compute the value $T$ on the following inputs. Show your work.
+\begin{enumerate}
+\item $T(2) = T(\lfloor 4/3 \rfloor) + 5 = T(1) + 5 = 2 + 5 = 7$
+\item $T(3) = T(\lfloor 6/3 \rfloor) + 5 = T(2) + 5 = 7 + 5 = 12$
+\item $T(5) = T(\lfloor 10/3 \rfloor) + 5 = T(3) + 5 = 12 + 5 = 17$
+\end{enumerate}
+\end{problem}
+
+
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{8}
+Give recursive definitions for the following functions.
+\begin{enumerate}
+\item $f(n) = \Sigma_{i=0}^{n}i = F_{n-1} + F_{n-2}$
+\item $f(n) = \Pi_{i=0}^{n}i = F_{n-1}*F_{n-2}$
+\end{enumerate}
+\end{problem}
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{9}
+Given the function MIN that takes two numbers and returns the smallest. Consider the following
+algorithm that is meant to find the smallest number in  subarray $A[p,q]$ i.e., the subarray that starts at $p$ and ends at $q$. Assume $p \leq q$.
+\begin{algorithm}
+ \caption{Minimum}
+ \begin{algorithmic}[H]
+ \Procedure{Minimum}{$A, p, q$}\Comment{returns the smallest number in array $A[p,q]$.}
+  \If{$p == q$}
+    \State \Return $A[p]$
+  \Else
+    \State return MIN($A[p]$, MINIMUM($A,p+1,q$))
+  \EndIf
+ \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\begin{enumerate}
+ \item How numbers are in the subarray $A[p,q]$? q-p-1
+ \item Does MINIMUM work when there is only one element in the subarray? Briefly justify your 
+ answer. It will return that one item since there is a condition to check the indexes.
+ \item Assume MINIMUM works when the subarray has only one element. Does it work when the 
+ subarray has two elements? Briefly justify your answer. Yes it will work, because it will compare the iterate once and compare the two elements and return the smallest.
+ \item Assume MINIMUM works when the subarray has 5 elements. Does it work when the 
+ subarray has 6 elements? Justify your answer. Yes it'll work with 6 elements. It will be able to iterate through the entire array. It continues to run through the array searching for and returning the minimum value. 
+  
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{10}
+For each of the following algorithm fragments fill in appropriate function of $n$ in
+$\Theta$.
+\end{problem}
+
+\begin{enumerate}
+ 
+ \item
+ \begin{algorithm}[H]
+ \begin{algorithmic}
+ \State $x = 0$
+ \For{ $i = 1 \textrm{ to } n$ }
+   \State $++x$
+ \EndFor
+ \State $\Theta(n)$
+ \end{algorithmic}
+ \end{algorithm}
+ 
+  \item
+ \begin{algorithm}[H]
+ \begin{algorithmic}
+ \State $x = 0$
+ \For{ $i = 1 \textrm{ to } n$ }
+   \For{ $j = 1 \textrm{ to } n$ }
+     \State $x = x + 2$
+   \EndFor
+ \EndFor
+ \State $\Theta(n^2)$
+ \end{algorithmic}
+ \end{algorithm}
+ 
+ \item
+ \begin{algorithm}[H]
+ \begin{algorithmic}
+ \State $x = 0$
+ \For{ $i = 1 \textrm{ to } n$ }
+   \For{ $j = 1 \textrm{ to } n^2$ }
+     \State $x = x - 8$
+   \EndFor
+ \EndFor
+ \State $\Theta(n^3)$
+ \end{algorithmic}
+ \end{algorithm}
+ 
+ \item
+ \begin{algorithm}[H]
+ \begin{algorithmic}
+ \State $x = 0$
+ \For{ $i = 1 \textrm{ to } n$ }
+   \For{ $j = 1 \textrm{ to } i$ }
+     \State $x = x * 2$
+   \EndFor
+ \EndFor
+ \State $\Theta(n^2)$
+ \end{algorithmic}
+ \end{algorithm}
+
+ \item
+ \begin{algorithm}[H]
+ \begin{algorithmic}
+ \State $x = 0$
+ \For{ $i = 1 \textrm{ to } n$ }
+   \For{ $j = 1 \textrm{ to } i^2$ }
+     \For{ $k = 1 \textrm{ to } n$ }
+       \State $x = x + 2$
+       \State $x = x * x$
+     \EndFor
+   \EndFor
+ \EndFor
+ \State $\Theta(n^4)$
+ 
+ \end{algorithmic}
+ \end{algorithm}
+ 
+\end{enumerate}
+
+
+%Copy the following block of text for each problem in the assignment.
+%\begin{problem}{1}
+%\end{problem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter anything below this line.
+\end{document}

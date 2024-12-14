@@ -1,0 +1,29 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+\title{Proceeding Summaries 3}
+\author{Tanner Hammond}
+\date{February 2021}
+\addbibresource{references.bib}
+\begin{document}
+
+\maketitle
+
+\section{Bypassing Tor Exit Blocking with Exit Bridge Onion Services \cite{Bypass}}
+
+This paper focuses on the issue of Tor exit blocking from websites. Tor allows people to anonymously travel the internet by using proxies to forward the user's traffic. Tor exit points are publicly advertised and about 20\% of websites block people coming from the Tor network. Tor relays are very highly targeted by DNS and IP blacklists and this threatens Internet access to Tor users. An idea brought forward was exit bridges for a tunnel between the Tor exit and the destination. This paper presents HebTor which is an architecture for Tor exit bridges to help reduce the threat of blocking. Hebtor makes it more difficult to distinguish non-anonymous users and anonymous users since both users can arrive from similar networks. The issues with constructing exit bridges are that you have to make sure the bridges don't risk current anonymity, incentivize ordinary users to run exit bridges on their own computer, and shouldn't attract a disproportionate share of Tor egress traffic. The HebTor exit bridges are operated by volunteers that contribute their idle bandwidth and CPU resources. These volunteers will are vetted, will receive feedback to build a trust with users, and receive payment. The volunteer network brings on another set of issues such as verification, payment, and not endangering anyone's' anonymity.
+
+\section{Hyperledger Fabric: A Distributed Operating System for Permissioned Blockchains \cite{Hyper}}
+
+This paper introduced Fabric which is a open source system for deploying and operating permissioned blockchains. Blockchains are ledgers that record any transactions that are validated by the users. The utilization of blockchains emerged with Bitcoin and have since held a high place in the digital world. That is a public blockchain which means anyone can be involved without a specific identity. Permissioned blockchains is ran by a group of identified participants. The blockchain allows them to secure interactions such as funds, goods, or information. Fabric is one of the projects of Hyperledger by the Linux Foundation. The use cases of Fabric are areas such as dispute resolutions, trade logistics, food safety, and contract management. Fabric is the first blockchain system to support the execution of distributed applications written in standard programming languages in a way that allows them to be consistently executed across many nodes. Fabric's transaction flow is separated into three steps; execute, order, validate. Fabric has a hybrid replication design which incorporates passive and active replication and also the execute-order-validate paradigm. This is to overcome limitations of prior permissioned blockchains which tends to stem from their order-execute design and the permisionless blockchains. 
+
+\section{Rational Manager in Bitcoin Mining Pool: Dynamic Strategies to Gain Extra Rewards \cite{Rational}}
+
+This paper focuses on several attacks against the Bitcoin blockchain and mining pools. Mining pools is the collection of miners joining their power to increase the effectiveness, reduce independent risk, and smooth the rewards. These are necessary due to the large total of hash power in the Bitcoin network. There is the 51\% attack which is when a mining entity has more than 50\% of the mining power of the whole net. The mining entity then can choose any block in the main branch to fork and end up double-spending a transaction. There is also the selfish mining attack which attacks the whole system by not publishing the block found immediately but continuing to mine the block. When others find another block, the attacker publishes private block and generates a fork. A mining entity with more than one third of the total mining power will benefit from this. There is also a withholding attack which aims at mining pools. A mining entity can allocate part of its hashpower to participate in the target pool and submit shares except valid block to the manager and then use the remaining hashpower to mine for itself. This paper focuses more on the manager of a mining pool that attempts to gain extra rewards. Their situation is a manager applying a dynamic strategy to attempt to incentivize miners not to withhold block but also gain extra. The manager will selfish mine, withhold blocks, and discard blocks by other miners to gain rewards when the mining pool's advantage is low. In odd circumstances, this can actually be successful in a group effort and attract a cooperative selfish mining group. The main situation with these attacks is for miners to be able to detect it and trying to counter it and what the manager does in return.
+
+\section{Next 3 papers}
+\item ACE: Asynchronus and Concurrent Execution of Complex Smart Contracts
+\item Investigating MMM Ponzi Scheme on Bitcoin
+\item CLAPS: Client-Location-Aware Path Selection in Tor
+\printbibliography
+\end{document}

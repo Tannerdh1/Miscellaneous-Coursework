@@ -1,0 +1,156 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter this block of commands.  If you're proficient at LaTeX, you may include additional packages, create macros, etc. immediately below this block of commands, but make sure to NOT alter the header, margin, and comment settings here. 
+\documentclass[12pt]{article}
+\usepackage{amsmath,amsthm,amssymb,amsfonts, enumitem, fancyhdr, color, comment, graphicx, environ, algorithm, algpseudocode}
+
+
+
+
+%\pagestyle{fancy}
+%\setlength{\headheight}{65pt}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{sol}
+    {\emph{Solution:}
+    }
+    {
+    \qed
+    }
+\specialcomment{com}{ \color{blue} \textbf{Comment:} }{\color{black}} %for instructor comments while grading
+\NewEnviron{probscore}{\marginpar{ \color{blue} \tiny Problem Score: \BODY \color{black} }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter this block.
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Homework \#9 \\ CPSC 250 \\ Due: Wednesday, November 20th \\ Tanner Hammond}%replace X with the appropriate number
+\date{}
+
+\maketitle
+
+\begin{enumerate}
+
+\item (15) Give an inductive proof that TREE-INORDER prints the nodes of a binary search tree in 
+sorted order.
+\begin{itemize}
+\item Base case: The amount of nodes is 0 so it's an empty tree. A tree of any height h has at least $2^{bh(x)} -1$ nodes, so it holds true for the base case since it's zero.
+\item Inductive step: Suppose the claim holds true for a subtree x of positive height. The total amount of nodes is $2^{bh(x)-1} -1$. The height of the children will be less than x, therefore it follows the inductive. 
+\item Conclusion: Thus the claim holds true for a tree of any postive height. By the principle of mathematical induction the claim holds true for all trees.
+\end{itemize}
+
+\item (5) Write a TREE-PREDECESSOR procedure. It should have the same structure as
+ TREE-SUCCESSOR (algorithm included at the end).
+\begin{algorithm}[H]
+ \begin{algorithmic}[1]
+ \Procedure{TREE-PREDECESSOR($x$)}{}
+ \State if x.left != NIL
+\State \indent  return Tree-Maximum(x.left)
+\State y = x.parent
+\State while y != NIL and x == y.left
+\State \indent x = y
+\State \indent y = y.parent
+\State return y
+ 
+ \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\item (5) Write a recursive procedure PRINT-DESCENDING that prints the contents of a binary 
+search tree in descending order.
+\begin{algorithm}[H]
+ \begin{algorithmic}[1]
+ \Procedure{PRINT-DESCENDING($x$)}{}
+ \State if x == null
+ \State \indent return 
+ \State PRINT-DESCENDING(x.right)
+ \State PRINT-DESCENDING(x.left)
+ \State print x.key
+ \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\item (20) Let $x$ be a pointer of a node in binary tree (not necessarily a binary search tree). 
+Each node has attributes 
+$x.left$, $x.right$, $x.key$ and $x.p$ which point to $x$'s left child, right child, and parent, 
+respectively. Write recursive code for the following functions.
+\begin{enumerate}
+
+\item TREE-SHAPE($x$, $y$) should return true if and only if the trees rooted at $x$ and $y$
+have the same shape. For example, is $x$ and $y$ are trees with a single node, they have the 
+same shape, even if they store different data items. If $x$ and $y$ had two nodes, they won't
+have the same shape if $x$ had a left child but $y$ had a right child.
+\begin{algorithm}[H]
+ \begin{algorithmic}[1]
+ \Procedure{TREE-SHAPE($x$, $y$)}{}
+ \State if(x.left == nil and x.right == nil and y.right == nil and y.left == nil)
+ \State \indent return true
+ \State else if(x.right !=nil and y.right != nil and x.left == nil and y.left == nil)
+ \State \indent TREE-SHAPE(x.right, y.right)
+ \State else if(x.left != nil and y.left != nil and x.right == nil and y.right == nil)
+ \State \indent TREE-SHAPE(x.left, y.left)
+ \State else if(x.left != nil and y.left != nil and x.right != nil and y.right != nil)
+ \State \indent TREE-SHAPE(x.right, y.right)
+ \State \indent TREE-SHAPE(x.left, y.left)
+ \State else return false
+ \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\item TREE-COUNT($x$, $k$) should return the number of nodes in a tree with key $k$.
+\begin{algorithm}[H]
+ \begin{algorithmic}[1]
+ \Procedure{TREE-COUNT($x$, $k$)}{}
+ \State count = 0
+ \State if(x != nullptr)
+ \State \indent if(k == x.key)
+ \State \indent \indent count ++
+ \State \indent TREE-COUNT(x.left, key)
+ \State \indent TREE-COUNT(x.right, key)
+ \State return count
+ \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+\end{enumerate}
+
+\item (10) Suppose that we have numbers between 1 and 1000 in a binary search tree, and we
+want to search for the number 111. Which of the following sequences could not be
+the sequence of nodes examined?
+\begin{enumerate}
+\item 2, 252, 401, 398, 330, 344, 397, 363. Can be
+\item 924, 220, 911, 244, 898, 258, 362, 363. Can be
+\item 925, 202, 911, 240, 912, 245, 363. Can not be
+\item 2, 399, 387, 219, 266, 382, 381, 278, 363. Can be
+\item 935, 278, 347, 621, 299, 392, 358, 363. Can not be
+\end{enumerate}
+
+\item (10) We can sort a given set of n numbers by first building a binary search tree containing these numbers (using TREE-INSERT repeatedly to insert the numbers one by
+one) and then printing the numbers by an inorder tree walk. What are the worst-case
+and best-case running times for this sorting algorithm?
+\newline Best case: O(nlgn)
+\newline Justification: The tree is balanced so the height is lgn and you will have to go through the entire list of items so that's the n.
+\newline Worst case: $\Theta (n^2)$
+\newline Justification: The height is n because they are being inserted in an already sorted order. This means you have to go through height n and through the entire list of n elements.
+
+\item (10) Answer the following questions.
+\begin{enumerate}
+\item When node $z$ in TREE-DELETE (algorithm included below) has two children, we could choose 
+node y as its predecessor rather than its successor. What other changes to TREE-DELETE
+would be necessary if we did so? We would have to swap the y.right s and y.lefts and in the else statement we would have to change the z.right to z.left and the z.left to z.right. Also the tree min would have to be changed to tree max.
+
+\item Some have argued that a fair strategy, giving
+equal priority to predecessor and successor, yields better empirical performance.
+How might TREE-DELETE be changed to implement such a fair strategy? You can choose one at random or use the height to determine which one.
+\end{enumerate}
+
+\end{enumerate}
+
+%Copy the following block of text for each problem in the assignment.
+%\begin{problem}{1}
+%\end{problem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter anything below this line.
+\end{document}

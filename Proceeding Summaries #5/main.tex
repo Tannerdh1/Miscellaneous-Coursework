@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+\title{Proceeding Summaries 5}
+\author{Tanner Hammond}
+\date{February 2021}
+\addbibresource{references.bib}
+\begin{document}
+
+\maketitle
+
+\section{Algorand: Scaling Byzantine Agreements for Cryptocurrencies \cite{Algorand}}
+
+Current proposals for new and efficient improvements for cryptocurrencies suffer a trade-off between latency and confidence in a transaction. Achieving a high confidence for a Bitcoin transaction will require about an hour long wait. On the other side, applications that require low latency cannot be certain that the transaction will be confirmed and has to hope the payer will not double-spend. Double-spending is a critical issue faced by many cryptocurrencies. These are prevented by confirmation of transactions in the blockchain, but it can be difficult. Anyone can participate, so an adversary can create pseudonyms that make it infeasible to rely on traditional confirmation protocols that require honest users. This is where proof-of-work comes in to help alleviate this issue. People won't gain advantages by using pseudonyms, but PoW allows the possibility of forks. Mitigating forks requires a lot of time and upkeep which results in transaction confirmation in Bitcoin to take about an hour. Algorand is a cryptocurrency that confirms transactions on the order of one minute. It uses a Byzantine Agreement protocol that scales to many users and allows confirmation on a new block with low latency and no possibility of forks. It also uses verifiable random functions that randomly selects users in a private and non-interactive way. Algorand's three main challenges are that it has to avoid Sybil attacks, it must scale to millions of users, and it has to be resilient to DoS attacks and continue to operate even if users are disconnected. For these challenges they use weighted users, consensus by committees, cryptographic sortition, and participant replacement. 
+
+\section{Whispers on Ethereum: Blockchain-based Covert Data Embedding Schemes \cite{Whispers}}
+
+Ethereum is one of the largest blockchain-based cryptocurrencies in the world. More than 2 million blocks were generated in 2019 alone. The Ethereum system has three main advantages to secretly transfer information. First, users are pseudonymous which protects people from being traced. Second, the transactions in block are immutable because they can only be tampered with when the attackers have more computation and storage power. Last, the time interval to confirm a block is limited. The Ethereum system takes about 10 to 20 seconds to confirm a block. This is about 30 times faster than the Bitcoin system. This paper focuses on the covert channel encoding schemes. At the beginning, most of the covert channel encoding schemes stored information in the header of communication protocols. In this paper, two covert data embedding schemes for the Ethereum system are proposed. First is a HMAC-based MBE scheme. This is the first time to use the VALUE field of a transaction to transfer secret data. Second is a Hash-based MBE scheme. It enhances the covertness by obfuscating the embedded bits via the has function. The analysis of both schemes show that they have either higher embedding rate  or better covertness than existing works. 
+
+\section{ÆGIS: Shielding Vulnerable Smart Contracts Against Attacks \cite{Aegis}}
+
+This paper focus on smart contracts, their vulnerabilities, and the attacks made against them. Deployed smart contracts are immutable, thus any bugs present during deployment or as a result of changes to the blockchain can make smart contracts vulnerable. Ethereum has suffered several devastating attacks on smart contracts. In 2016, an attacker was able to exploit a reentrancy bug and was able to recursively call a payout function. They managed to drain over \$150 million worth of Ethereum. In less than a day, the market cap value dropped \$600 million. There was also the Constantinople hard fork meant to introduce a cheaper gas cots that allowed an exploit. This exploit enabled reentrancy attacks. These vulnerabilities can take several days or weeks to issue an update and then even longer for the nodes to adopt this update. These delays extends the window for exploitation and can have devastating effects on the trade value. There is no standardised procedure to deal with vulnerable smart contracts. This has led to self-appointed white hats to attack smart contracts to protect funds that are at risk from malicious attackers. In some cases attacks can lead to hard forks as seen with the DAO hack.They introduce a domain-specific language which enables the description of attack patterns. These patterns reflect malicious control and data flows that occur during malicious transactions. ÆGIS is a tool that reverts malicious transactions in real time using attack patterns to prevent attacks on smart contracts. They also propose a way to propagate security updates without relying on client-side updates by making use of a smart contract to store and vote on new attack patterns. Storing patterns in a smart contract allows integrity, decentralizes security updates and provides full transparency on the proposed patterns. They then compare ÆGIS to current runtime detection tools and perform a large-scale analysis on 4.5 million blocks. ÆGIS achieves better precision than current tools. 
+
+\section{Next 3 Papers}
+\item Fail-safe Watchtowers and Short-lived Assertions for Payment Channels
+\item SmartWitness: A Proactive Software Transparency System using Smart Contracts
+\item Static Analysis of Integer Overflow of Smart Contracts in Ethereum
+
+\printbibliography
+\end{document}

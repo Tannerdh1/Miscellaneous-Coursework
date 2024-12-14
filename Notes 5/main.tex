@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Notes 5}
+\author{Tanner Hammond}
+\date{October 2021}
+
+\begin{document}
+
+\maketitle
+
+Class notes 9/27:\\
+Have to change UIDSs of files owed by a user, after that user's UID is changed, that is outside of their home directory.\\
+Testing commands from the reading:\\
+ps aux and ps to see the differences. a selects all processes except both session leaders. u displays user-oriented format, and x displays BSD format. \\
+top - top is an interactive version of ps\\
+man top\\
+man nice - each process has a nice value that determines priority\\
+sudo renice -5 2847 (emacs process)\\
+man strace - trace system calls and signals\\
+man cron - Schedule commands\\
+man kill - terminate a process\\
+man pkill - signal processes based on name or other attributes\\
+man fuser - identify proccesses using files\\
+man lsof - list open files\\
+lsof \\
+lsof -u administrator - list open files for administrator\\
+checked /var/spool to see the cron director\\
+man systemd.timer - timer unit configuration\\
+man df - system disk space usage\\
+df\\
+df -h - human-readable, prints sizes in powers of 1024. Mb, Gb.\\
+man du\\
+du - shows disk usage info\\
+du -h - human-readable\\
+du -sh -human-readable and summarize\\
+stat filename - shows detailed information about a file such as size, blocks, modified and access times\\
+pstree - shows running processes as a tree\\
+\\
+Class notes 9/29:\\
+Continued testing with commands from reading and notes\\
+man nohup - run a command immune to hangups\\
+start emacs and use top to see PID, run kill -9 PID to terminate.\\
+Create sever emacs processes, run pgrop emacs to see the PIDs, run killall -s SIGKILL to kill them all and then run pgrop emacs to make sure all gone.\\
+ps aux and ps lax to see the difference between them. l displays BSD long format.\\
+ps aux $|$ grep ssh - prints processes containing ssh\\
+ps aux $|$ grep sshd - prints processes containing sshd\\
+ps aux $|$ grep root - print processes from the root and ones that contain root\\
+ps aux $|$ grep administrator -prints processes from the administrator and ones that contain administrator\\
+pidof name - find process ID of a running program\\
+In top you can renice values. Top, press r, enter the PID and then the nice value\\
+In top, press 1 to see all cores.\\
+man vmstat - virtual memory statistics\\
+vmstat\\
+vmstat -s -displays a table of various event counters and memory statistics\\
+vmstat -d - report disk statistics\\
+vmstat -D - report summary statistics about disk activity\\
+uptime -tell how long the system has been running\\
+man uptime\\
+uptime -s -system up since in yyyy-mm-dd HH:MM:SS format\\
+whatis - shows simple description of a command\\
+whereis -shows where binary, source, and man page files for a command.\\
+man mount -mount a file system\\
+man fstab - static information about the filesystems\\
+man unmount -unmount a file system\\
+man ln - make links between files\\
+ln test1 (already created) test2 (not created) - create a link between test1 and test2\\
+ls -i - print index number of each file, you can see the links with this.\\
+man socket - linux socket interface\\
+man link - calls the link function to create a link to a file\\
+man unlink - removes the specified file to unlink\\
+man mknod - make block or character special files\\
+man lsattr - list file attributes\\
+lsattr tdhammond-hw4.txt - see file attributes of one of my files\\
+man chattr -change file attributes\\
+
+\end{document}

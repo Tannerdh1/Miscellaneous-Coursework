@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Notes4}
+\author{CPSC361, Tanner Hammond}
+\date{September 2021}
+
+\begin{document}
+
+\maketitle
+
+9/20 class notes:\\
+I turned off the computer and plugged in the usb. When I powered it on I constantly pressed F12 until it gave me a prompt to pick a boot drive. I picked the general Udisk which is the usb with Ubuntu. After some waiting, Ubuntu started loading and it was doing file system and disk checks. The checks took about 5-10 minutes. When done, it came up with the install menu. Clicked install Ubuntu, select English. On third slide for updates and other settings, I picked normal installation and download updates while installing Ubuntu. After that, I picked erase Ubuntu 20.04.1 LTS and reinstall. \\
+Partition statements from reinstalling.: The partition tables of the following devices are changed: \\
+SCSI1 (0,0,0) (sda) \\
+Following partitions are going to be formatted:\\
+Partition #2 of SCSI1 (0,0,0) (sda) as\\
+Partition #5 of SCSI1 (0,0,0) (sda) as ext 4\\
+Set location as Salem, VA. Name: Administrator. Computer's name: tanner. Pick a username: administrator. Password: r0@n0ke. Require password. Software updater and install updates.\\
+id- gives uID and gID\\
+User ids and gids start at 1000.\\
+cat /etc/passwd to see all the users and their ids.\\
+Below 1000 is for system process\\
+ifconfig- shows Ip address\\
+sudo apt install net tools needed to do ipconfig\\
+eno1: hardware network interface\\
+lo: logical interface (loopback interface)\\
+/proc is mapped directly to the memory\\
+ls/dev - yellow are devices\\
+var- contains log files\\
+
+9/22 class notes:\\
+installed emacs with sudo apt-get install emacs\\
+Notes and brainstorming for homework 4. Wrote down things that worked and didn't worked and the passwords for my users.
+\end{document}

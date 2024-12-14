@@ -1,0 +1,125 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter this block of commands.  If you're proficient at LaTeX, you may include additional packages, create macros, etc. immediately below this block of commands, but make sure to NOT alter the header, margin, and comment settings here. 
+\documentclass[12pt]{article}
+\usepackage{amsmath,amsthm,amssymb,amsfonts, enumitem, fancyhdr, color, comment, graphicx, environ, algorithm, algpseudocode}
+
+
+
+
+%\pagestyle{fancy}
+%\setlength{\headheight}{65pt}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{sol}
+    {\emph{Solution:}
+    }
+    {
+    \qed
+    }
+\specialcomment{com}{ \color{blue} \textbf{Comment:} }{\color{black}} %for instructor comments while grading
+\NewEnviron{probscore}{\marginpar{ \color{blue} \tiny Problem Score: \BODY \color{black} }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter this block.
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Homework \#8 \\ CPSC 250 \\ Due: Wednesday, November 13th \\Tanner Hammond}%replace X with the appropriate number
+\date{}
+
+\maketitle
+
+\begin{enumerate}
+\item (10) Using Figure 7.1 as a model, Illustrate the operation of PARTITION on the array
+$A = [8,5,8,4,9,2,1]$
+\begin{enumerate}
+\item $[|8|,5,8,4,9,2,1]$ 1 is the partition. The other elements are being compared to it. 
+\item $[|8,5|,8,4,9,2,1]$
+\item $[|8,5,8|,4,9,2,1]$
+\item $[|8,5,8,4|,9,2,1]$
+\item $[|8,5,8,4,9|,2,1]$
+\item $[|8,5,8,4,9,2|,1]$
+\item $[1,8,5,8,4,9,2]$
+\end{enumerate}
+
+\item (10) Use the algorithm PARTITION to answer the following questions.
+\begin{enumerate}
+\item How many times does the for-loop of line 3 iterate? \newline Answer: p to r-1, so the length of the subarray minus 1. The last item in the subarray is the partition.
+\item Besides the for-loop is there any line of code that takes more than $O(1)$ time? If there
+is, indicate the line and explain why it doesn't take constant time. \newline Answer: No, the for loop is the only thing that takes more than O(1) time. The for loop makes the runtime $\Theta$(n)
+\item Briefly argue that the running time of PARTITION on a subarray of size $n$ is $\Theta(n)$.
+\newline Answer: The for loop has to go through the length of the array and won't go through any less than it, so the time will always be n.
+\end{enumerate}
+
+\item (10) Write an iterative version of RANDOMIZED-SELECT.\\
+\begin{algorithm}[H]
+ \begin{algorithmic}[1]
+ \Procedure{RANDOMIZED-SELECT($A,p,r,i$)}{}\newline
+    while p \textless r  \newline
+    \indent    q = RANDOMIZED-PARTITION(A,p,r) \newline
+    \indent    k = q – p +1\newline
+    \indent    if i \textless =k then \newline
+    \indent\indent        r = q \newline
+    \indent    else \newline
+    \indent\indent        p = q + 1 \newline
+    \indent\indent        i = i – k \newline
+    return p \newline
+ \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\item (10) Let a $A[0, \cdots, 10]$ be an array of size 11. We use $A$ to store a hash table 
+that resolves collision by chaining. Using the hash function $h(k) = k \mod 11$, indicate the 
+content of each list $A[i]$, where $i \in [0,10]$, and the following keys are added to an 
+initially empty hash table: 4, 29, 15, 121, 98, 110001, 58, 31, 15, 20, 119. All insertions 
+should be performed at the head of the list.
+
+\begin{enumerate}
+\item $A[0] = [121]$
+\item $A[1] = [110001]$
+\item $A[2] = []$
+\item $A[3] = [58]$
+\item $A[4] = [4,15,15]$
+\item $A[5] = []$
+\item $A[6] = []$
+\item $A[7] = [29]$
+\item $A[8] = []$
+\item $A[9] = [31,20,119]$
+\item $A[10] = [98]$
+\end{enumerate}
+
+\item (10) Suppose that we are storing a set of $n$ keys into a hash table of size $m$. Show
+ that if the keys are drawn from a universe $U$ with $|U| > nm$, then $U$ has a subset of size 
+ $n$ consisting  of keys that all hash to the same slot, so that the worst-case searching time 
+ for hashing with chaining is $\Theta(n)$. Hint: try using numbers to see that the statement is 
+ always true. This will help you see why the statement always has to be true.
+ \newline 
+ Answer: $|U| - (m-1)(n-1) \textless nm − (m-1)(n-1) = n + m -1 \textgreater = n$
+
+\item (15) Give an inductive proof that Randomized-Select works.
+\begin{itemize}
+\item Base case: $ r-p+1 = n = 1$ \newline
+For this input size, the algorithm will return the 1 item because there is nothing to do to the subarray.
+\item Inductive step: $r-p+1 = n > 1$ \newline
+When Randomized Select is called and p < r, we get a partition. If the partition is equal to k, it returns the pivot, but if not we get one of two subarrays. These sub arrays have to have smaller sizes than n. The subarray will contain values that are either less than or greater than the value we're looking for. These subarrays are then the subject of a recursive randomized select and the subarrays become smaller until the value is found.
+\item Conclusion: By the principle of mathematical induction it follows that Randomized select works on all subarrays of size n\textgreater= 0
+\end{itemize}
+
+
+\end{enumerate}
+
+ 
+
+
+
+
+
+
+%Copy the following block of text for each problem in the assignment.
+%\begin{problem}{1}
+%\end{problem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter anything below this line.
+\end{document}
