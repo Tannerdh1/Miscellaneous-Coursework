@@ -1,0 +1,10 @@
+SELECT Student_id, count(distinct Sat_Math) from Finals group by Student_ID having count(distinct SAT_Math) > 1;
+SELECT Student_id, count(distinct Sat_Verbal) from Finals group by Student_ID having count(distinct SAT_Verbal) > 1;
+SELECT Student_id, count(distinct HS_rank) from Finals group by Student_ID having count(distinct HS_Rank) > 1;
+SELECT Student_id, count(distinct HS_outof) from Finals group by Student_ID having count(distinct Hs_outof) > 1;
+SELECT Student_id, count(distinct Degree_date) from Finals group by Student_ID having count(distinct Degree_date) > 1;
+SELECT Student_id, count(distinct Degree) from Finals group by Student_ID having count(distinct Degree) > 1;
+SELECT Student_id, count(distinct GPA) from Finals group by Student_ID having count(distinct GPA) > 1;
+SELECT Student_id, count(distinct Gender) from Finals group by Student_ID having count(distinct Gender) > 1;
+SELECT Student_id, count(distinct Major) from Finals group by Student_ID having count(distinct Major) > 1;
+SELECT Student_id, count(distinct Advisor) from Finals group by Student_ID having count(distinct Advisor) > 1;

@@ -1,0 +1,10 @@
+targets := $(patsubst %.md,%.html,$(wildcard *.md))
+
+all: $(targets)
+	find . -name "*~" -type f -delete
+
+%.html: %.md template.html5
+	pandoc --from=markdown --to=html5 --smart --template=template.html5 --email-obfuscation=references --output=$*.html $*.md
+
+clean:
+	find . -name "*~" -type f -delete

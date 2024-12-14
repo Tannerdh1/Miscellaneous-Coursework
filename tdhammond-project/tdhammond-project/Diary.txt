@@ -1,0 +1,61 @@
+Project Diary
+
+Tuesday (11-24-20) and Wednesday (11-25-20):
+I was writing plans on how I wanted the website layout to be. I also wrote a plan on in what order I wanted to tackle
+things. I reread the instructions on the database writeup and then also read some parts of the textbook to make
+reinforce or correct my thoughts about any terminology and processes. Overall, these were just planning days to have
+solid plans for what I needed/wanted to accomplish.
+
+Friday (11-27-20) and Saturday (11-28-20):
+I started to work on the database write up and also the SQL fixed queries. I knew some of the things may need
+tweaking and correcting but I was confident in being able to come up with the basis for these queries. 
+
+Sunday 11-29-20:
+I got the folder ready for work and submission by renaming and adding the beginning files. I did some testing in the
+w3schools tryit for some basic things to get the foundation for the website. This included the buttons, design, and
+layout I was interested in pursuing.
+
+Monday 11-30-20:
+This has been a day of setting up the php files and css design the way I've been planning. I don't have all of it, but
+I've been able to get the design down so that won't be a hinderance later. I had today planned as the day of setup so
+I'm satisfied with my progress. I'll probably do a little more tinkering to it, but later tonight and tomorrow will
+probably be about finishing up the database writeup and then completing the SQL files.
+
+Tuesday 12-1-20:
+I unfortunately haven't been able to get as much progress done today as much as I wanted to due to family things that
+came up. Today's plan was working on the database writeup and getting those tables finished. I've also been reading the
+textbook along with that. My plan for tomorrow is to finish up with what I leave tonight when I'm done and bring
+everything over to DatabaseWriteup.txt. I also updated the README.txt, which I'll keep updating while I keep adding
+things. I'm disappointed I wasn't able to get as much done today as I wanted, these smaller things will help keep
+things in line for me and save time later.
+
+Wednesday 12-2-20:
+Today I've mainly working on the database writeup and started getting the sql files ready for the tables. I had my own
+concepts I was doing just to have a placeholder until everything is confirmed. I've also been chapter 12 of the book to
+make sure I'm confident in my working on the normal forms. I also found some good videos to see some visuals. I wish I
+had more done by now, but I've been putting forward a lot of time and the extra research will help. Tomorrow I think
+will be the end of the database writeup and I can get started on the tables and the true website workload. I hope the
+database writeup layout and progress is on track for what is needed. I also remembered that I failed to do any comments
+for what code I have so I made note of that to make sure it won't be forgotten.
+
+Thursday 12-3-20:
+I feel good about the progress I have done today as I feel like I'm on track for what I need. I think I've done things correctly
+and that I'm on a good path for tomorrow. While I wanted more progress overall, I think I'm on a good track as I was most concerned
+about the database writeup. It has definitely taken more time than I was planning and hoping, but it's too critical.It's what
+everything is based on and I want to make sure I'm thorough.
+
+Friday 12-4-20:
+I've been working on the Database writeup and feel like it is almost finished. I think where I'm having trouble is a couple
+of the attributes. Obviously, some of my trouble has come from OMajor and OAdvisor, but also SOC_ORG has had me a little stumped.
+OMajor and OAdvisor I get don't depend on Year and Semester, but I'm having trouble since also this morning I looked more into
+after the email and saw how it doesn't depend on only Student_id. SOC_ORG has also been one, since it doesn't depend specifically on anything.
+I worked on the creating and populating sql files since I've been able to get most of the ones that I've established done. I'm going to continue working tonight
+and try to have the Database writeup finished and get the create, populate, and verify sql files done.
+
+Saturday 12-5-20:
+I have for the most part finished the writeup, but I still want to go back and make sure I didn't miss anything or fix errors. I started working on the
+website side. I have written the files to connect the database, create and populate the tables, and drop the tables. I did testing today about the tables, making sure
+the connection was successful. I'm going to continue working tonight to get at least the register, login, and fixed queries pages done. I would like to get more done,
+but I have a lot left and it's going to take a lot of work and focused effort to get it done.
+
+Sunday 12-6-20:

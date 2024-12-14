@@ -1,0 +1,20 @@
+OS=$(shell uname)
+ifeq ($(OS),Darwin)
+CXXFLAGS=-framework OpenGL -lglfw
+else
+CXXFLAGS=-lglfw -lGL
+endif
+
+all: run
+
+run: driver.o model.o
+	g++ driver.o model.o -o run $(CXXFLAGS)
+
+driver.o: test/driver.cc src/model.h
+	g++ -c test/driver.cc
+
+model.o: src/model.cpp
+	g++ -c src/model.cpp
+
+clean:
+	rm -fr *.o driver

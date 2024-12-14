@@ -1,0 +1,275 @@
+Steps for Database writeup:
+
+Step 1 - Write relvar R with all of the attributes.
+
+Step 2 - Write all of the FDs for this relvar with reasoning for the FDs.
+The reasoning can be straight forward. Such as every student has a unique score.
+Number the FDs
+
+Step 3 - Show why your relvar is not in 3rd normal form. SHOW!!!!! 1st normal form-
+You need to point out which attributes if any are not atomic. 2nd normal form- need to show
+ what a primary key for this relvar is, establish the primary key, show that every nonkey
+ attribute is irreducibly nondependent on the primary key. 3rd- show that there is some
+ attribute that is transitivitly dependent on the primary key, show how it is transitivly
+ dependent. Now you have show that is not in 3rd normal form. Show why they are not in these
+ forms.
+
+Step 4 - State which FD number you are using to use Heaths theorem to decompose R.
+
+Step 5 - Write the FDs for R1 and write the FDs for R2. Make sure all of these FDs are
+numbered then show that you have not lost any FDs.
+
+Step 6 - Find a primary key for R1 and find a primary key for R2.
+
+Step 7 - Show that R1 and R2 is in or is not in 3rd normal form. If R1 is not in 3rd normal
+form, repeat all the steps again. And do the same for R2. Eventually you will get down to
+relvars that are all in 3rd normal form. Show how each attribute is NOT transitively dependent
+on the primary key.
+
+Once all the third normal form relvars are done, that's when you name them.
+
+Last step - Conclude and explain the tables and their attributes. Write the primary keys and
+foreign keys if any.
+
+Attributes of RawData: Relvar R
+
+STUDENT_ID
+ADDRESS 
+SAT_VERBAL
+SAT_MATH
+HS_RANK
+HS_OUTOF
+DEGREE_DATE
+DEGREE
+GPA 
+GENDER
+YEAR
+SEMESTER 
+DEPARTMENT
+COURSE_NUM
+GRADE
+HOURS 
+INSTRUCTOR
+SOC_ORG
+MAJOR 
+ADVISOR
+OMAJOR 
+OADVISOR 
+
+FDs:
+
+STUDENT_ID -> SAT_VERBAL - Each student has one Verbal SAT score recorded. FD #1
+	   -> SAT_MATH - Each student has one Math SAT score recorded. FD #2
+	   -> HS_RANK - Every student has a rank they graduate from high school with. FD #3
+	   -> HS_OUTOF - Every student has a specific value. FD #4
+	   -> DEGREE_DATE - Each student has a date they are going to get their degree. FD #5
+	   -> DEGREE - Each student has a degree type they are going to graduate with. FD #6 
+	   -> GPA - Each student has a cumulative GPA FD #7
+	   -> GENDER - Each student has their recorded gender. FD #8
+	   -> MAJOR - Each student has either a null or declared major. FD # 9
+           -> ADVISOR - Each student is given an advisor. FD # 10
+	            	   
+STUDENT_ID, COURSE_NUM, DEPARTMENT, YEAR, SEMESTER -> GRADE - A student has many grades, so to get grades of a
+	    			    	  	      specific class you also need to include the course number.
+						      Departments may also have classes of the same number, so that
+						      is required to differentiate. These classes may have also been
+						      attempted more than once, so semester and year is neccesary. FD #11
+	    	       				   -> INSTRUCTOR - A class may be offered by more than one instructor,
+						      so the course number alone won't determine the instructor. Departments
+						      may have classes of the same number and instructors may teach different
+						      departments. The instructor may change between semesters so year and
+						      semester are needed. Since more than a class can be taught more than
+						      once a semester and students may be in different ones. FD #12
+
+COURSE_NUM, DEPARTMENT -> HOURS - Each class has a set number of hours, but you need to use the Department to determine
+	    	       	  the specific class. FD #13
+
+STUDENT_ID, YEAR, SEMESTER -> ADDRESS - A student's residential status can change between semesters, so we need to use
+	    	  	      the year and semester to be accurate. FD #14
+
+
+Now we show why this relvar isn't in 3rd normal form. To do this, we'll go through first, second, and then third normal form.
+We will be using Relvar R.
+
+For it to be in first normal form, we need to point out which if any attributes are not atomic.
+This means that all attributes are not multi-valued. Every attribute is single valued, so the first form is satisified 
+
+For it to be in second normal form, we need to show what a primary key for the relvar is, establish the primary key, and show that every nonkey attribute is irreducibly nondependent on the primary key.
+It must also be in first normal form to be able to be in second. The primary of key of R is {STUDENT_ID, COURSE_NUM, DEPARTMENT, YEAR, SEMESTER}. This key allows us to accurately access any row of data.
+Now we have to test the partial dependency of these attributes. Partial dependency is when a nonprime attribute depends on only a part of the primary key. Such as ADDRESS only depending on STUDENT_ID,
+YEAR, and SEMESTER but not COURSE_NUM and DEPARTMENT. This is an example of how this relvar is not in second normal form. Since it isn't in second normal form, it can't be in third normal form.
+
+For it to be in third normal form, we need to show that there is no transitive dependencies. This means are there any attributes that depend on another attribute that is not or not a part of the primary key.
+But since it isn't in second normal form, it can't be in third normal form.
+
+Now that is done, we need to use Heaths Theorem to decompose R to be able to get tables that are in third normal form. Heath's Theorem states that a functional dependency can always be decomposed into
+its projections with no loss of data. Those two projections can also be joined back into the original relation.
+Now we are going to split Relvar R into relvars R1 and R2.
+R1:    	   	 R2:
+STUDENT_ID	 STUDENT_ID
+SAT_VERBAL #1	 COURSE_NUM
+SAT_MATH #2	 GRADE
+HS_RANK #3	 HOURS
+HS_OUTOF #4	 INSTRUCTOR
+DEGREE_DATE #5	 ADDRESS
+DEGREE #6   	 YEAR
+GPA #7 		 SEMESTER
+GENDER #8	 SOC_ORG
+MAJOR #9	 DEPARTMENT
+ADVISOR #10	 OMAJOR
+		 OADVISOR
+
+FDs for R1:
+STUDENT-> SAT_VERBAL #1
+       -> SAT_MATH #2
+       -> HS_RANK #3
+       -> HS_OUTOF #4
+       -> DEGREE_DATE #5
+       -> DEGREE #6
+       -> GPA #7
+       -> GENDER #8
+       -> MAJOR #9
+       -> ADVISOR #10
+
+FDs for R2:
+STUDENT_ID, COURSE_NUM, DEPARTMENT, YEAR, SEMESTER -> GRADE #13
+	    			    	  	   -> INSTRUCTOR #14
+COURSE_NUM, DEPARTMENT -> HOURS #15
+STUDENT_ID, YEAR, SEMESTER -> ADDRESS #16
+
+There are no FDs lost from decomposition.
+
+Primary key for R1: STUDENT_ID
+
+Primary key for R2: {STUDENT_ID, COURSE_NUM, DEPARTMENT, YEAR, SEMESTER}
+
+First normal form for R1:
+Are all of the attributes atomic? Yes they are atomic since they don't have any multi-value attributes.
+So it is in first normal form.
+Second normal form for R1:
+Is there any attribute that depends on a part of the primary key but not another? There are no attributes
+that depend on another part of the primary key. All of the attributes are dependent on only STUDENT_ID.
+Third normal form for R1:
+Are there any attributes that depend on another attribute that isn't a part of the primary key?
+No, they are all dependent on STUDENT_ID and not on any other attribute.
+Since it is proven to be in third normal form, I'm going to call this table Student.
+
+First normal form for R2:
+Are all of the attributes atomic? Yes they are atomic, they all have single values.
+Second normal form for R2:
+Is there any attribute that depends on a part of the primary key but not another? There is, ADDRESS depends on STUDENT_ID, YEAR, and SEMESTER but not COURSE_NUM AND DEPARTMENT.
+Therefore it is not in second normal form and also can't be in third normal form.
+
+This means we need to decompose again. This time, we will decompose R2.
+R3:  	      	   R4:
+STUDENT_ID 	   STUDENT_ID
+YEAR		   COURSE_NUM
+SEMESTER	   GRADE
+ADDRESS	#16	   HOURS
+		   INSTRUCTOR
+		   YEAR
+		   SEMESTER
+		   SOC_ORG
+		   DEPARTMENT
+
+STUDENT_ID, YEAR, SEMESTER -> ADDRESS #16
+STUDENT_ID, COURSE_NUM, DEPARTMENT, YEAR, SEMESTER -> GRADE #13
+	    			    	  	   -> INSTRUCTOR #14
+COURSE_NUM, DEPARTMENT -> HOURS #15
+
+No FDs are lost.
+
+Primary key for R3: {STUDENT_ID, YEAR, SEMESTER}
+
+Primary key for R4: {STUDENT_ID, COURSE_NUM, DEPARTMENT, YEAR, SEMESTER}
+
+First normal form for R3:
+Are all of the attributes atomic? Yes they are, they all have single values.
+Second normal form for R3:
+Is there any attribute that depends on a part of the primary key but not another? No, Address is dependent on STUDENT_ID, YEAR, and SEMESTER which is the entire primary key
+and there aren't any other attributes in R3 that depend on anything.
+Third normal form for R3:
+Are there any attributes that depend on another attribute that isn't a part of the primary key?
+No, there is nothing that depends on anything that isn't a part of the primary key.
+Therefore it is in third normal form and is finished. Now I will call this table Residence.
+
+First normal form for R4:
+Are all of the attributes atomic?
+Yes, they all are single valued.
+Second normal form for R4:
+Is there any attribute that depends on a part of the primary key but not another?
+Yes, HOURS depends on COURSE_NUM AND DEPARTMENT but not STUDENT_ID, YEAR, and SEMESTER.
+Since it's not in second normal form, it's also not in third normal form. R4 must be decomposed.
+
+R5:   	       R6:
+COURSE_NUM     STUDENT_ID
+DEPARTMENT     COURSE_NUM
+HOURS #15      GRADE
+	       INSTRUCTOR
+	       YEAR
+	       SEMESTER
+	       SOC_ORG
+	       DEPARTMENT
+	       OMAJOR
+	       OADVISOR
+
+COURSE_NUM, DEPARTMENT -> HOURS #15
+STUDENT_ID, COURSE_NUM, YEAR, SEMESTER, DEPARTMENT -> GRADE #13
+	    		      			   -> INSTRUCTOR #14
+
+No FDs are lost.
+
+Primary key for R5: {COURSE_NUM, DEPARTMENT}
+Primary key for R6: {STUDENT_ID, COURSE_NUM, YEAR, SEMESTER, DEPARTMENT}
+
+First normal form:
+Are all of the attributes atomic? Yes, they are all single valued attributes.
+Second Normal Form:
+Is there any attribute that depends on a part of the primary key but not another? No HOURS depends on both COURSE_NUM and DEPARTMENT. The other attributes don't depend on anything.
+Third Normal Form:
+Are there any attributes that depend on another attribute that isn't a part of the primary key? No, there are no attributes that depend on anything that isn't a part of the primary key.
+Therefore, this relvar is in third normal form and is finished. This will be called CourseInfo.
+
+First Normal Form:
+Are all of the attributes atomic? Yes, all of these attributes are atomic.
+Second Normal Form:
+Is there any attribute that depends on a part of the primary key but not another? No, there are no attributes that depend on only a part of the primary key.
+Third Normal Form:
+Is there any attribute that depends on another attribute that isn't a part of the primary key? No, there aren't any that depend on an attribute that isn't a part of the primary key.
+This relvar is in third normal form, but there is a lot of unneccesary repetition with this relvar. We can split this relvar since there are indepent relations.
+We can split this into R7, R8, and R9
+R7:    	     R8:       	   R9:
+STUDENT_ID   STUDENT_ID	   STUDENT_ID
+COURSE_NUM   SOC_ORG	   OMAJOR
+GRADE	     		   OADVISOR
+INSTRUCTOR
+YEAR
+SEMESTER
+DEPARTMENT
+
+R7 will be CourseInfo
+R8 will be SocOrgs
+R9 will be OtherMajAdvs
+
+Now that Relvar R is fully decomposed, we will focus on the admin part of the database.
+
+There are 4 attributes that will make up a user. Their username, their password, and their role.
+
+So this relvar will look like this
+R10:
+USER_ID
+USERNAME
+PASSWORD
+ROLE
+
+Primary Key: USER_ID
+
+First Normal Form:
+Are all of the attributes atomic? Yes, they are all atomic.
+Second Normal Form:
+Is there any attribute that depends on a part of the primary key, but not another?
+No, all of the attributes depend on the entire primary key.
+Third Normal Form:
+Is there any attribute that depnds on another attribute that isn't a part of the primary key?
+No, the attributes are all dependent on only the primary key.
+Therefore, this relvar is in third normal form and we will call it Users.

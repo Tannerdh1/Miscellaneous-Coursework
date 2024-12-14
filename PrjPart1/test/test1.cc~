@@ -1,0 +1,8 @@
+#include <src/model.cpp>
+#include <src/model.h>
+
+int main(){
+  File file = 'cube.obj';
+  Model::Model();
+  Model::Load(file);
+}
