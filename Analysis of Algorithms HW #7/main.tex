@@ -1,0 +1,158 @@
+% --------------------------------------------------------------
+% This is all preamble stuff that you don't have to worry about.
+% Head down to where it says "Start here"
+% --------------------------------------------------------------
+ 
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+ 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+ 
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{reflection}[2][Reflection]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}                      
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{definition}[2][definition]{\begin{trivlist}                      
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+ 
+\begin{document}
+ 
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+ 
+%\renewcommand{\qedsymbol}{\filledbox}
+ 
+\title{Homework \#7}%replace X with the appropriate number
+\author{\\ %replace with your name
+CPSC 395 - Analysis of Algorithms
+\\ Due: Monday, 5} %if necessary, replace with your course title
+\date{}
+\maketitle
+
+\begin{enumerate}
+\item Exercise 11.1-2\\
+A bit vector is simply an array of bits (0s and 1s). A bit vector of length m takes
+much less space than an array of m pointers. Describe how to use a bit vector
+to represent a dynamic set of distinct elements with no satellite data. Dictionary
+operations should run in O(1) time. \\
+
+The bit vector consists of only 0s and 1s. Each bit can represent if an element exists or not in the set. If at the ith position, i exists the bit would be 1 and if it doesn't exist it would be 0. Since it's a set of distinct elements, we don't have to worry about repetition. This also means the size of the vector would depend on the largest element in the set. There are the three dictionary operations insert, delete, and search. Insert would set the bit at position k to 1, delete would set the bit at position k to value 0, and search would check if the bit at position k is 1 and return k if it is and return NIL if it isn't.
+
+\item Exercise 11.2-1 \\
+Suppose we use a hash function h to hash n distinct keys into an array T of
+length m. Assuming simple uniform hashing, what is the expected number of
+collisions? More precisely, what is the expected cardinality of \{\{k,l\} : k $\neq$ l and h(k) = h(l)\}? \\
+
+The probability a pair of keys collides is 1/m.
+
+\item Exercise 11.2-3 \\
+Professor Marley hypothesizes that he can obtain substantial performance gains by
+modifying the chaining scheme to keep each list in sorted order. How does the professor’s
+modification affect the running time for successful searches, unsuccessful
+searches, insertions, and deletions? \\
+
+For successful and unsuccessful searches, the worst case is when you have to go through the entire list. Even if the list was sorted, this worst case will still hold so the running time for successful and unsuccessful searches stay the same which is $\Theta(1 + \alpha)$ where $\alpha$ is n/m. With insertion in a unsorted list, it is just put as the head of the linked list. But since this is sorted, the proper place for it has to be found so in the worst case it would have to go through the entire list. Therefore it has the same time as successful and unsuccessful searches.
+
+\item Exercise 11.4-1 (Show your work) \\
+Consider inserting the keys 10, 22, 31, 4, 15, 28, 17, 88, 59 into a hash table of
+length m = 11 using open addressing with the auxiliary hash function h'(k) = k.
+Illustrate the result of inserting these keys using linear probing, using quadratic
+probing with $c_1$ = 1 and $c_3$ = 3, and using double hashing with  $h_1$(k) = k and $h_2$(k) = 1 + (k mod(m-1)). \\
+
+Linear Probing:
+
+Linear Probing uses the hash function h(k,i) = (h'(k)+i) mod m. Since m is 11, our function is h(k,i) = (h'(k)+i) mod 11. h'(k) = k.\\
+
+h(10, 0) = (10+0) mod 11 = 10 mod 11 = T[10]\\
+h(22, 0) = (22+0) mod 11 = 22 mod 11 = T[0]\\
+h(31, 0) = (31+0) mod 11 = 31 mod 11 = T[9]\\
+h(4, 0) = (4+0) mod 11 = 4 mod 11 = T[4]\\
+h(15, 0) = (15+0) mod 11 = 15 mod 11 = T[4], Collision so we make i = 1;\\
+h(15, 1) = (15+1) mod 11 = 16 mod 11 = T[5]\\
+h(28, 0) = (28+0) mod 11 = 28 mod 11 = T[6]\\
+h(17, 0) = (17+0) mod 11 = 17 mod 11 = T[6], Collision so we make i = 1;\\
+h(17, 1) = (17+1) mod 11 = 18 mod 11 = T[7]\\
+h(88, 0) = (88+0) mod 11 = 88 mod 11 = T[0], Collision so we make i = 1;\\
+h(88, 1) = (88+1) mod 11 = 88 mod 11 = T[1]\\
+h(59, 0) = (59+0) mod 11 = 59 mod 11 = T[4], Collision so we make i = 1;\\
+h(59, 1) = (59+1) mod 11 = 59 mod 11 = T[5], Collision so we make i = 2;\\
+h(59, 2) = (59+2) mod 11 = 59 mod 11 = T[6], Collision so we make i = 3;\\
+h(59, 3) = (59+3) mod 11 = 59 mod 11 = T[7], Collision so we make i = 4;\\
+h(59, 4) = (59+4) mod 11 = 59 mod 11 = T[8]\\
+So we end up with T[0] = 22, T[1] = 88, T[2] = NIL, T[3] = NIL, T[4] = 4, T[5] = 15, T[6] = 28, T[7] = 17, T[8] = 59, T[9] = 31, T[10] = 10.\\
+
+Quadratic probing with $c_1$ = 1 and $c_3$ = 3:
+
+Quadratic probing uses the hash function h(k,i) = (h'(k) + $c_1$i + $c_2i^2$) mod m, so our function is 
+h(k,i) = (h'(k) + 1(i) + 3($i^2$)) mod 11.\\
+
+h(10, 0) = (10 + 1(0) + 3(0)) mod 11 = 10 mod 11 = T[10]\\
+h(22, 0) = (22 + 1(0) + 3(0)) mod 11 = 22 mod 11 = T[0]\\
+h(31, 0) = (31 + 1(0) + 3(0)) mod 11 = 31 mod 11 = T[9]\\
+h(4, 0) = (4 + 1(0) + 3(0)) mod 11 = 4 mod 11 = T[4]\\
+h(15, 0) = (15 + 1(0) + 3(0)) mod 11 = 15 mod 11 = T[4], Collision so we make i = 1;\\
+h(15, 1) = (15 + 1(1) + 3(1$^2$)) mod 11 = 19 mod 11 = T[8]\\
+h(28, 0) = (28 + 1(0) + 3(0)) mod 11 = 28 mod 11 = T[6]\\
+h(17, 0) = (17 + 1(0) + 3(0)) mod 11 = 17 mod 11 = T[6], Collision so we make i = 1;\\
+h(17, 1) = (17 + 1(1) + 3(1$^2$)) mod 11 = 21 mod 11 = T[10], Collision so we make i = 2;\\
+h(17, 2) = (17 + 1(2) + 3(2$^2$)) mod 11 = 31 mod 11 = T[9], Collision so we make i = 3;\\
+h(17, 3) = (17 + 1(3) + 3(3$^2$)) mod 11 = 47 mod 11 = T[6], Collision so we make i = 4;\\
+h(17, 4) = (17 + 1(4) + 3(4$^2$)) mod 11 = 69 mod 11 = T[3]
+h(88, 0) = (88 + 1(0) + 3(0)) mod 11 = 88 mod 11 = T[0], Collision so we make i = 1;\\
+h(88, 1) = (88 + 1(1) + 3(1)) mod 11 = 92 mod 11 = T[4], Collision so we make i = 2;\\
+h(88, 2) = (88 + 1(2) + 3(2$^2$)) mod 11 = 102 mod 11 = T[3], Collision so we make i = 3;\\
+h(88, 3) = (88 + 1(3) + 3(3$^2$)) mod 11 = 118 mod 11 = T[8], Collision so we make i = 4;\\
+h(88, 4) = (88 + 1(4) + 3(4$^2$)) mod 11 = 140 mod 11 = T[8], Collision so we make i = 5;\\
+h(88, 5) = (88 + 1(5) + 3(5$^2$)) mod 11 = 168 mod 11 = T[3], Collision so we make i = 6;\\
+h(88, 6) = (88 + 1(6) + 3(6$^2$)) mod 11 = 202 mod 11 = T[4], Collision so we make i = 7;\\
+h(88, 7) = (88 + 1(7) + 3(7$^2$)) mod 11 = 242 mod 11 = T[0], Collision so we make i = 8;\\
+h(88, 8) = (88 + 1(8) + 3(8$^2$)) mod 11 = 140 mod 11 = T[2]\\
+h(59, 0) = (59 + 1(0) + 3(0)) mod 11 = 59 mod 11 = T[4], Collision so we make i = 1;\\
+h(59, 1) = (59 + 1(1) + 3(1)) mod 11 = 63 mod 11 = T[8], Collision so we make i = 2;\\
+h(59, 2) = (59 + 1(2) + 3(2$^2$)) mod 11 = 73 mod 11 = T[7]\\
+So we end up with T[0] = 22, T[1] = NIL, T[2] = 88, T[3] = 17, T[4] = 4, T[5] = NIL, T[6] = 28, T[7] = 59, T[8] = 15, T[9] = 31, T[10] = 10. \\
+
+Double hashing with $h_1$(k) = k and $h_2$(k) = 1 + (k mod(m-1)):
+
+Double hashing has the function h(k,i) = ($h_1$(k) + i$h_2$(k)) mod m. Our function is 
+h(k,i) = (k + i(1 + (k mod(m-1)) mod m. \\
+
+h(10, 0) = (10 + 0(1 + (10 mod 10)) mod 11 = 10 mod 11 = T[10] \\
+h(22, 0) = (22 + 0(1 + (22 mod 10)) mod 11 = 22 mod 11 = T[0] \\
+h(31, 0) = (31 + 0(1 + (31 mod 10)) mod 11 = 31 mod 11 = T[9] \\
+h(4, 0) = (4 + 0(1 + (4 mod 10)) mod 11 = 4 mod 11 = T[4] \\
+h(15, 0) = (15 + 0(1 + (15 mod 10)) mod 11 = 15 mod 11 = T[4]. Collision so we make i = 1;\\
+h(15, 1) = (15 + 1(1 + (15 mod 10)) mod 11 = 15 + 1(1 + 5) = 21 mod 11 = T[10], Collision so we make i = 2;\\
+h(15, 2) = (15 + 2(1 + 15 mod 10)) mod 11 = 15 + 2(6) = 27 mod 11 = T[5] \\
+h(28, 0) = (28 + 0(1 + 28 mod 10)) mod 11 = 28 mod 11 = T[6]
+h(17, 0) = (17 + 0(1 + 17 mod 10)) mod 11 = 17 mod 11 = T[6], Collision so we make i = 1; \\
+h(17, 1) = (17 + 1(1 + 17 mod 10)) mod 11 = (17 + 1(1 + 7)) mod 11 = 25 mod 11 = T[3] \\
+h(88, 0) = (88 + 0(1 + 88 mod 10)) mod 11 = 88 mod 11 = T[0], Collision so we make i = 1; \\
+h(88, 1) = (88 + 1(1 + 88 mod 10)) mod 11 = (88 + 1(1 + 8)) mod 11 = 97 mod 11 = T[9], Collision so we make i = 2; \\
+h(88, 2) = (88 + 2(1 + 88 mod 10)) mod 11 = (88 + 2(9)) mod 11 = 106 mod 11 = T[7] \\
+h(59, 0) = (59 + 0(1 + 59 mod 10)) mod 11 = 59 mod 11 = T[4], Collision so we make i = 1; \\
+h(59, 1) = (59 + 1(1 + 59 mod 10)) mod 11 = (59 + (1 + 9)) mod 11 = 69 mod 11 = T[3], Collision so we make i = 2; \\
+h(59, 2) = (59 + 2(1 + 9)) mod 11 = 79 mod 11 =  T[2] \\
+So we end up with T[0] = 22, T[1] = NIL, T[2] = 59, T[3] = 17, T[4] = 4, T[5] = 15, T[6] = 28, T[7] = 88, T[8] = NIL, T[9] = 31, T[10] = 10. 
+\end{enumerate}
+ 
+ 
+ Please email me if you have any questions.
+
+% --------------------------------------------------------------
+%     You don't have to mess with anything below this line.
+% --------------------------------------------------------------
+ 
+\end{document}

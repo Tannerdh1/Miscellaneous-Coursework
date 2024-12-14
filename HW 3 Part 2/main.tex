@@ -1,0 +1,43 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{HW 3 Part 2}
+\author{CPSC 463,
+        Tanner Hammond}
+\date{September 2021}
+
+\begin{document}
+
+\maketitle
+
+13. Write a grammar for the language consisting of strings that have n copies of the letter a followed by the same number of copies of the letter b, where n $>$ 0. For example, the strings ab, aaaabbbb, and aaaaaaaabbbbbbbb are in the language but a, abb, ba, and aaabb are not.\\
+The language is $a^nb^n$, so the grammar would be : \\
+S \rightarrow aSb | ab | $\lambda$\\
+This satisfies the where n $>$ 0 and there will never be unequal amounts of a's or b's. \\
+
+17. Convert the following EBNF to BNF: \\
+S \rightarrow A\{bA\}\\
+A \rightarrow a$[$b$]$A\\
+
+In an EBNF, brackets mean optional parts. In a BNF this requires separate rules. \\
+Braces indicates parts that can be repeated indefinitely or left out altogether. \\
+BNF:\\
+S \rightarrow A\\
+\indent     |AbS\\
+A \rightarrow aA\\
+\indent |abA\\
+
+23c. Compute the weakest precondition for each of the following assignment
+statements and postconditions: c. a = a + 2 * b - 1 \{a $>$ 1\}
+
+Substitute a + 2 * b -1 for a in the post condition, so;\\
+a + 2b - 1 $>$ 1 \\
+a + 2b $>$ 2 \\
+2b $>$ 2 - a \\
+b $>$ 1 - (a/2) \\
+
+Therefore, the weakest precondition is \{b $>$ 1 - (a/2)\}
+
+
+
+\end{document}

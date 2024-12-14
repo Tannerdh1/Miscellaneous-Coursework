@@ -1,0 +1,39 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Homework 8}
+\author{Tanner Hammond, CPSC 463}
+\date{November 2021}
+
+\begin{document}
+
+\maketitle
+
+14. What are the two potential problems with the static-chain method? \\
+
+1. References to variables in scopes beyond the static parent cost more than references to local. The static chain must be followed, one link per enclosing scope from the reference to the declaration. \\
+2. It's difficult for a programmer working on a time-critical program to estimate the costs of nonlocal references, because the cost of each reference depends on the depth of nesting between the reference and the scope of declaration. Subsequent code modification could change nesting depths, so the timing of some reference may change.\\
+
+15. Explain the two methods of implementing blocks. \\
+
+1. Using the static-chain process. Blocks are treated as parameterless subprograms that are called form the same place in the program. Every block has an activation record and an instance of its activation record is created every time the block is executed. \\
+2. Max amount of storage required for block variable at any time during the execution of a program can be statically determined. This amount of space can be allocated after the local variables in the activation record. Offsets for all block variables can be statically computed, so block variables can be addressed exactly as if they were local variables.\\
+
+16. Describe the deep-access method of implementing dynamic scoping. \\
+
+References to nonlocal variables can be resolved by searching through the activation record instances of the other subprograms that are active, beginning with the one most recently activated. It follows the dynamic chain which links all subprogram activation record instances in the reverse of the order in which they were activated.
+
+17. Describe the shallow-access method of implementing dynamic scoping. \\
+
+Variables declared in subprograms aren't stored in the activation records of the subprograms. One approach is having a separate stack for each variable name in a complete program. Another approach is using a central table that has a location for each different variable name in a program.\\
+
+18. What are the two differences between the deep-access method for nonlocal access in dynamic-scoped languages and the static-chain method for static-scoped languages? \\
+
+1. In a Dynamic-scoped language there is no way to determine at compile time the length of the chain that must be searched. Every activation record instance in the chain must be searched until the first instance of the variable is found. This is a reason why dynamic-scoped languages usually have slower execution speeds that static-scoped.\\
+2. Activation records must store the names of variables for the search process, but in static-scoped language implementations only the values are required. This is because variables in static scoping are represented by the chain offset/local offset pairs.\\
+
+19. Compare the efficiency of the deep-access method to that of the shallow access method, in terms of both calls and nonlocal accesses. \\
+
+Deep-access provides fast subprogram linkage, but references to non local variables are costly. The shallow-access provides much faster references to non local variables, but is more costly in terms of subprogram linkage.
+
+\end{document}

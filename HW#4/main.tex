@@ -1,0 +1,104 @@
+\documentclass{article}
+
+\usepackage[english]{babel}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumerate} % to be able to use a parametrised enumerate
+                       % environment where we can specify how the
+                       % items in the environment are labelled.
+
+\newcommand{\nat}{\mathbb{N}}
+
+\title{Homework 4}
+\author{CPSC450, Fall2020}
+\date{September 9, 2020\\
+Due: Tuesday, September 15, 2020}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+
+\item Let $G_1$ and $G_2$ be the following grammars:
+\begin{alignat*}{7}
+G_1&:&  S &\rightarrow&\,& aABb &\hspace{0.5in} & &G_2&:& S &\rightarrow&\,& AABB\\
+   &&  A &\rightarrow&\,& aA \mid a & & &&& A &\rightarrow&\,& AA \mid a\\
+   &&  B &\rightarrow&\,& bB \mid b & & &&& B &\rightarrow&\,& BB \mid b
+\end{alignat*}
+
+For each variable $X$, show that the right-hand side of every $X$ rule
+in $G_1$ is derivable from the corresponding variable $X$ using the
+rules of $G_2$. Use this to conclude that $L(G_1) \subseteq L(G_2)$.
+\newline S $\rightarrow$ AABB
+\newline $\rightarrow$ aABB A $\rightarrow$ a
+\newline $\rightarrow$ aABb B $\rightarrow$ b
+\newline
+\newline A $\rightarrow$ AA
+\newline $\rightarrow$ aA A $\rightarrow$ a
+\newline
+\newline B $\rightarrow$ BB
+\newline $\rightarrow$ bB B $\rightarrow$ b
+
+\item For the following grammar, $G$, construct an equivalent
+  essentially non-contracting grammar $G_L$ with a non-recursive start
+  symbol. Clearly show the step-by-step construction of
+  the set, NULL, of nullable variables. Give a regular expression for
+  the language of $G$.
+
+ $G$ is given by:
+     \begin{eqnarray*}
+      S &\rightarrow& aS \mid bS \mid B\\
+      B &\rightarrow& bb \mid C \mid \lambda\\
+      C &\rightarrow& cC \mid \lambda.
+    \end{eqnarray*}
+    
+\newline $(a+b)^*c^*$
+
+ 
+\item Prove that for any variable $A$ in a given grammar $G = (V,
+  \Sigma, P, S)$, Algorithm 4.3.1 (page 114) correctly generates
+  CHAIN($A$), i.e., any variable in a \emph{chain} starting at
+  $A$. Use the definitions of \emph{chain rule} and \emph{chain} from
+  the book.
+  \newline Chain: A string that don't derive into additional length or add terminal symbols. 
+  \newline Chain rules: Rules that only renames variables. They don't increase the length or produce any additional terminal symbols.
+
+\item Construct an equivalent grammar eliminating all chain rules from
+  the grammar $G$ given by:
+     \begin{eqnarray*}
+      S &\rightarrow& AB \mid BCS\\
+      A &\rightarrow& aA \mid C\\
+      B &\rightarrow& bbB \mid b\\
+      C &\rightarrow& cC \mid \lambda.
+     \end{eqnarray*}
+     
+\newline S $\rightarrow$ AB $|$ BS' $|$ BS $|$ b
+\newline S' $\rightarrow$ CS
+\newline A $\rightarrow$ AA $|$ a
+\newline B $\rightarrow$ B'B $|$ b
+\newline B' $\rightarrow$ BB
+\newline C $\rightarrow$ CC $|$ c
+  
+   \item Construct an equivalent grammar without useless symbols for
+     the grammar, $G$, given below. Trace the generation of the sets of
+     TERM and REACH used to construct $G_T$ and $G_U$.
+     \begin{eqnarray*}
+      S &\rightarrow& aA \mid BD\\
+      A &\rightarrow& aA \mid aAB \mid aD\\
+      B &\rightarrow& aB \mid aC \mid BF\\
+      C &\rightarrow& Bb \mid aAC \mid E\\
+      D &\rightarrow& bD \mid bC \mid b\\      
+      E &\rightarrow& aB \mid bC \\
+      F &\rightarrow& aF \mid aG \mid a\\
+      G &\rightarrow& a \mid b.
+    \end{eqnarray*}
+    
+\newline S $\rightarrow$ aA
+\newline A $\rightarrow$ ab
+     
+\end{enumerate}  
+     
+\end{document}
+
+

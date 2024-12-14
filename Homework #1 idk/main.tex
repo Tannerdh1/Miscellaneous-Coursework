@@ -1,0 +1,71 @@
+\documentclass{article}
+
+
+% Here is another way to make the title for a document.
+% The following three commands specify values for the title, author
+% and date fields of the title for this document.
+\title{Homework 1}
+\author{CPSC361, Fall2021\\
+        Tanner Hammond}
+\date{September 1, 2021\\
+Due: Sunday, September 5, 2021}
+
+\begin{document}
+\maketitle % This command creates the title for the document using
+           % the values for the title, author and date that were
+           % specified in the preamble.
+
+\begin{enumerate}
+
+\item Write a command (that could include filters) that, given a path
+  to a directory, say $D$, will create a file named
+  \texttt{/tmp/Largest-file-in-$D$} containing the path to the largest
+  file in the file system rooted at $D$. Clearly describe
+  how you would test your command.
+  
+  I created this scenario on an Ubuntu virtual machine to test. I created a directory named Question1, with 4 subdirectories named Test1, Test2, Test3, and Test4. Test 1 had three folders, TestA with a file that is 5mb, TestB with a file that is 10mb, and TestC with a file that is 7.5mb. Test 2 had one folder, TestA with a file that is 100mb. Test 3 had 2 folders, TestA with a 10mb file and TestB with a 20mb file. Test4 has 4 folders, TestA with a 10mb file, TestB with a 7.5mb file, TestC with a 5mb file, and TestD with a 20mb file. The biggest file is Test2's folder TestA, so that is the one I should be expecting to get returned.
+  
+  find Question1/ -type f -printf '\%s\%p\textbackslash n' $|$ sort -nr $|$ head -1 $>$ path.txt\\
+  Find searches the folder Question1, -type f specifies search for files. The flag -printf prints with the format given by '\%s\%p\textbackslash n'. \%s is the file size in bytes, \%p is the file's name, and \textbackslash n is newline. Sort sorts the results from the find with the flags -nr, will sort the records from the first part by numerical from highest to lowest. Flag -n is for the numerical sort, and -r is for reverse. Head -1 returns the very first record which will be the largest file and the $>$ path.txt will create a file named path.txt which contains the path.
+  
+\item Write a command (that could include filters) that, given a path
+  to a directory, say $D$, will print out paths to all the files, $f$, in the
+  file system rooted at $D$ where the file $f$ has an extension
+  \texttt{.cc} and contains the word \texttt{Hello}. Clearly describe
+  how you would test your command.
+  
+  I created a folder Question2, with 3 folders Test1, Test2, and Test3. Test1 has 2 folders, TestA with a file named test1.cc and the contents "Hello World!' and TestB with a file named test2.cc and the contents "Goodbye!". Test2 has 2 folders, TestA with a file named test1.cc and the contents "Goodbye!" and TestB with a file named test2.cc with the contents "Hello Everyone!". Test3 has 2 folders, TestA with a file named test1.cc with the contents "Hello!" and TestB with a file named test2.cc with the contents "Hello". So  the file paths that should be printed out are for Test1's TestA, Test2's TestB, and both of Test3's.\\
+  
+  find Question2/ -name '*.cc' $|$ grep -r -s -l Hello\\
+  This is the command I ended with and it worked with my testing. It searched in Question 2 for files that names end in .cc and pipes that to the grep command. The flags for the grep command are r, l, and s. Flag r is the recursive flag which reads all files under each directory recursively. Flag l gets grep to only print out the file path, so it gets rid of the part that satisfies the Hello search. Flag s stops error messages getting printed, if it wasn't there it would show the messages of the files from the find not finding anything with Hello.
+
+\item Write a shell script that, given two command line arguments: (1)
+  the path to a file $f$, and (2) a positive, non-zero integer, $n$, will
+  output the lines of $f$ skipping $n$ lines each time. For example,
+  if $n$ is 2, then your script should output lines 1, 4, 7, etc. of
+  the given file $f$.
+  In writing your script, follow
+  the best practices listed on pages 187 and 188 of the text. Clearly describe
+  how you would test your command.
+    
+    $\#$!/bin/sh\\
+    input = \$1\\
+    skip = \$((\$2+1))\\
+    x = \$((\$+1))\\
+    \\
+    while read line;\\
+    do\\
+       if [ \$x -eq \$skip ]; then\\
+            echo "\$line"\\
+            x=\$((0))\\
+        fi\\
+        x=\$((x+1))\\
+    done \< "\$input"\\
+
+  The script sets the variable input to the first input which is the file path and skip and x to the second input plus 1 which is the skip. They are set equal at first so the first line prints first. The while loop reads through the lines of the file. The if statement checks to see if x and skip, which is set for the amount of lines the user wants skipped. If they are equal, then it prints out the line after skipping n amount of lines and it sets x back to zero. It will then increment x and continue looping. I created a folder named Question3 with a file named testfile which is what will be read and quest3.sh is the shell script. The testfile was simple and just 1-20 written on seperate lines. I then do ./quest3.sh ~/Documents/Hw1/Question3/testfile 2. The path and 2 lines skipped. This will print out one, four, seven, ten, thirteen, sixteen, and nineteen.
+  
+\end{enumerate}
+\end{document}
+
+
+

@@ -1,0 +1,75 @@
+% --------------------------------------------------------------
+% This is all preamble stuff that you don't have to worry about.
+% Head down to where it says "Start here"
+% --------------------------------------------------------------
+ 
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+ 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+ 
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{reflection}[2][Reflection]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}                      
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{definition}[2][definition]{\begin{trivlist}                      
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+ 
+\begin{document}
+ 
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+ 
+%\renewcommand{\qedsymbol}{\filledbox}
+ 
+\title{Homework \#1}%replace X with the appropriate number
+\author{Tanner Hammond\\ %replace with your name
+CPSC 395 - Analysis of Algorithms
+\\ Due: Friday, 12} %if necessary, replace with your course title
+\date{}
+\maketitle
+
+\begin{enumerate}
+\item Exercise 3.1-2
+\newline Show that for any real constants $a$ and $b$, where $b > 0, (n + a)^b = O(f(n) + g(n)).$
+\newline We need to find constants $c_1,c_2,n_0 > 0$ such that $0 \leq c_1n^b \leq (n+a)^b \leq c_2n^b$ for all n $\geq n_0$.
+\newline n + a $\leq$ n + $|a|$ \\
+\hspace*{10mm} $ \leq$ 2n when $|a| \leq n$, \\
+n + a $\geq$ n - $|a|$ \\
+\hspace*{10mm} $\geq \frac{1}{2}n$ when $|a| \leq \frac{1}{2}n$, \\
+When n $\geq 2|a|$, 0 $\leq \frac{1}{2}n \leq n + a \leq 2n$.\\
+b $>$ 0, so the inequality will exist when all parts are raised to the power b: \\
+0 $\leq (\frac{1}{2}n)^b \leq (n + a)^b \leq (2n)^b$ \\
+0 $\leq (\frac{1}{2})^b \leq (n + a)^b \leq 2^bn^b$. \\
+Thus, $c_1$ = $(1/2)^b$, $c_2$ = $2^b$, and $n_0 = 2|a|$ satisfy the definition.
+
+\item Exercise 3.1-4
+\newline Is $2^{n+1} = O({2^n})?$ Is $2^{2n} = O(2^n)?$
+\newline To see if $2^{n+1} = O(2^n)$, we must find constants c,$n_0 > 0$ such that 0 $\leq 2^{n+1} \leq c * 2^n$ for all n$\geq n_0$. $2^{n+1} = 2 * 2^n$ for all n and we can satisfy the definition with c = 2 and $n_0$ = 1. Therefore, $2^{n+1} = O({2^n})$.
+\newline To see if $2^{2n} = O(2^n)$, assume there exist constants c,$n_0 >$0 such that $0 \leq 2^{2n} \leq c*2^n$ for all n $\geq n_0$. Then $2^{2n} = 2^n * 2^n$ &\rightarrow& $2^n \leq c$. But no constant is greater than all $2^n$, and so the assumption leads to a contradiction.
+
+\item Exercise 3.2-2 (You can use any of the equations previously given equations). 
+\newline Prove Equation (3.16): $a^{{log_b}c}$ $=$ $c^{{log_b}a}$
+\newline $log_b(a^{{log_b}c}) = log_b(c^{{log_b}a})$
+\newline $log_bc * log_ba = log_ba * log_bc$
+\newline $log_ba = log_ba$
+\end{enumerate}
+ 
+
+% --------------------------------------------------------------
+%     You don't have to mess with anything below this line.
+% --------------------------------------------------------------
+ 
+\end{document}

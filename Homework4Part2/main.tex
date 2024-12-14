@@ -1,0 +1,21 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Homework4Part2}
+\author{Tanner Hammond }
+\date{September 2021}
+
+\begin{document}
+
+\maketitle
+
+21. The handle is the correct RHS that should be reduced to its corresponding LHS to get the next sentential form in the rightmost derivation\\
+22. Pushdown automaton, it's a recognizer for a context-free language. It scans strings of symbols left to right and uses a pushdown stack as its memory.\\
+23. (1) It can be built for all programming languages. (2) Can detect syntax errors as soon as it is possible in a left to right scan. (3) The LR class of grammars is a proper superset of the class parsable by LL parsers.\\
+24. One could effectively look to the left of the suspected handle all the way to the bottom of the parse stack to determine whether it was the handle.\\
+25. The action part of the table specifies most of what the parser does. It takes the state symbol at the top of the stack and the next token of input and uses the parse table to do what it should do. Its main actions are shift, reduce, accept, and error.\\
+26. The GOTO part of the table indicates which state symbol should be pushed onto the parse stack after a reduction has been completed. Which means the handle has been removed from the stack and the new nonterminal has been pushed onto the parse stack. \\
+27. No, since left recursion doesn't effect bottom-up parsers. Many recursive grammars are LR, but none are LL.
+
+
+\end{document}

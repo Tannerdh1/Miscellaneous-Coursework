@@ -1,0 +1,83 @@
+\documentclass{article}
+
+\usepackage[english]{babel}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumerate} % to be able to use a parametrised enumerate
+                       % environment where we can specify how the
+                       % items in the environment are labelled.
+
+\newcommand{\nat}{\mathbb{N}}
+
+\title{Homework 7}
+\author{CPSC450, Fall2020}
+\date{October 9, 2020\\
+Due: Wednesday, October 14, 2020}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+
+\item Suppose $L$ is a regular language. Show that the language
+  \[
+  L_1 = \{ uv \mid v \in L \}
+  \]
+  is regular.
+  
+  \newline Suppose
+
+\item Using Corollary 6.5.2, show that the languages $L_2$ and $L_3$
+  are not regular.
+
+\begin{eqnarray*}
+  L_2 &=& \{ w \in \{a, b\}^* \mid \mbox{ $w$ contains an equal number
+    of $a$'s and $b$'s.} \}\\
+  L_3 &=& \{ a^i(ab)^j(ca)^{2i} \mid i, j > 0 \}
+\end{eqnarray*}
+  is not regular.
+  \newline $L_2$: $a^ib^i$
+  \newline $u_i = a^{i-1}a$
+  \newline $v_i = b^i$
+  \newline $u_iv_i = a^{i-1}ab^i$
+  \newline $u_iv_j = a^{i-1}ab^j$
+  \newline
+  \newline $L_3$: $a^i(ab)^j(ca)^{2i}$
+  \newline $u_i = a^i$
+  \newline $v_i = ab(ca)^{2i}$
+  \newline $u_iv_i = a^iab(ca)^{2i}$
+  \newline $u_iv_j = a^iab(ca)^{2j}$
+
+\item Using the pumping lemma show that the languages $l_4$ and $L_5$
+  are not regular.
+
+  \begin{eqnarray*}
+    L_4 &=& \{ a^nb^m \mid n < m \}\\
+    L_5 &=& \{ ww \mid w \in \{a, b\}^* \}
+  \end{eqnarray*}
+  
+  \newline $L_4$: Suppose by way of contradiction, ${a^nb^m \mid n < m}$ is regular. Then, there is a DFA M that accepts L. Let M have k states. Consider z = $a^kbb^k$.
+  \newline Therefore $|z| \geq k $ and $ z \in L$. For z = uvw such that $|uv| \leq k $ and $ |v| > 0$.
+  \newline Let u = $a^x$ , v = $a^{k-t-x}$ , and w = $a^tbb^k$.
+  \newline Then $uv^2w$ = $a^xa^{2(k-t-x}a^tbb^k$ = $a^{2k-x-t}bb^k$ = $a^{k+k-t-x}b^{k+1}$.
+  \newline Since k-t-x $>$ 0., k+k-t-x $>$ k. Therefore $a^{k+k-t-x}b^{k+1} \notin L$.
+  \newline
+  \newline $L_5$: Suppose by way of contradiction, ${ww \mid w \in \{a, b\}^*}$ is regular. Then, there is a DFA M that accepts L. Let M have k states. Consider z = $a^ib^ia^ib^i$.
+  \newline Therefore $|z| \geq k$ and $z \in L$. For z = uvw such that $|uv| \leq k$ and $|v| > 0$. Let u = $a$ , v = $a$ , and w = $b$.
+
+\item Give examples of languages $L_6$ and $L_7$ over $\{a, b\}$ such
+  that $L_6$ is nonregular, $L_7$ is nonregular and $L_6 \cup L_7$ is
+  regular. Show that $L_6$ and $L_7$ are nonregular, and that $L_6
+  \cup L_7$ is regular.
+  \newline $L_6 = {a^nb^m|n \geq m}$ , this is non-regular.
+  \newline Proof:
+  \newline $L_7 = {a^nb^m|n \leq m}$ , this is non-regular.
+  \newline Proof:
+  \newline $L_6 \cup L_7 = a^*b^*$ , this is regular.
+  \newline Proof:
+\end{enumerate}  
+     
+\end{document}
+
+

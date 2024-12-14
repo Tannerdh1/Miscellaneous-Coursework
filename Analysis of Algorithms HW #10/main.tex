@@ -1,0 +1,95 @@
+% --------------------------------------------------------------
+% This is all preamble stuff that you don't have to worry about.
+% Head down to where it says "Start here"
+% --------------------------------------------------------------
+ 
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+ 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+ 
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{reflection}[2][Reflection]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}                      
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{definition}[2][definition]{\begin{trivlist}                      
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+ 
+\begin{document}
+ 
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+ 
+%\renewcommand{\qedsymbol}{\filledbox}
+ 
+\title{Homework \#10}%replace X with the appropriate number
+\author{\\ %replace with your name
+CPSC 395 - Analysis of Algorithms
+\\ Due: Monday, 26} %if necessary, replace with your course title
+\date{}
+\maketitle
+
+\begin{enumerate}
+\item Exercise 17.1-2 \\
+Show that if a DECREMENT operation were included in the k-bit counter example, n operations could cost as much as $\Theta$(nk) time. \\
+We already know INCREMENT takes time $\Theta$(k) (where k is the length of the array) in the worst case, which would be if the array contains all 1s. A sequence of n INCREMENT operations would take $\Theta$(nk) in the worst case. DECREMENT would be the same with its worst case time being $\Theta$(k) which would be if the array was all 0's except for the highest bit so it would have to flip the one and then all of the 0s to 1s. An example is 1000 goes to 0111, which takes k flips. That would mean the worst case of n DECREMENT operations is also $\Theta$(nk) time. So in the case the DECREMENT operation was included in the k-bit counter example, n operations would cost as much as $\Theta$(nk) since DECREMENT have the same time as INCREMENT.
+
+\item Exercise 17.1-3 \\
+Suppose we perform a sequence of n operations on a data structure in which the ith operation costs i if i is an exact power of 2, and 1 otherwise. Use aggregate analysis to determine the amortized cost per operation. \\
+As stated, the cost is $c_i=\{^{i\quad \textrm{if i is a power of 2}}_{1\quad otherwise}$. A sample of this is:
+\begin{center}
+ \begin{tabular}{|c c|} 
+ \hline
+ Operations & Cost\\ [0.5ex] 
+ \hline
+ 1 & 1 \\ 
+ \hline
+ 2 & 2 ($2^1$)  \\
+ \hline
+ 3 & 1 \\
+ \hline
+ 4 & 4 ($2^2$)\\
+ \hline
+ 5 & 1 \\
+ \hline
+ 6 & 1  \\ 
+ \hline
+ 7 & 1 \\ 
+ \hline
+ 8 & 8 ($2^3$)\\
+ \hline
+ 9 & 1  \\
+ \hline
+\end{tabular}
+\end{center}
+Our total cost would be the summation of the right column until it hits n operations. There are $\lfloor lgn \rfloor$ number of i's that are powers of 2, from 1 to n and then there's the rest of the cheap operations. So the total cost is $\leq n + \sum_{m=1}^{\lfloor lgn \rfloor}2^m$. $\sum_{i=1}^nc_i \leq n + \sum_{m=1}^{\lfloor lgn \rfloor}2^m$. $\sum_{m=1}^{\lfloor lgn \rfloor}2^m$ is equal to $2^{\lfloor lgn \rfloor+1}-1$. We substitute that in and get n + $2^{\lfloor lgn \rfloor+1}-1$. We can further make that n + 2n -1, so we end up with $\sum_{i=1}^nc_i \leq$ 3n - 1. O(3n) is equal to O(n) and dividing that by n operations gives an amortized cost per operation of O(1).
+
+\item Exercise 17.2-2 \\
+Redo Exercise 17.1-3 using an accounting method of analysis. \\
+This is the same problem as the first one, but using the accounting method. In the accounting method, we assume amortized costs for operations. The amount of credit has to be non-negative. A couple of things to remember is $\sum^n_{i=1}\hat{c_i} \geq \sum^n_{i=1}c_i$, and the total credit scored is the difference between the amortized cost and the total actual cost, $\sum^n_{i=1}\hat{c_i} - \sum^n_{i=1}c_i$. We know from the previous question that $\sum_{i=1}^nc_i \leq$ 3n. So the amortized cost will be $\geq$ 3n. We can get a total amortized cost of 3n by making the amortized cost of each operation 3 since there are n operations.
+
+\item Exercise 17.3-2 \\
+Redo Exercise 17.1-3 using a potential method of analysis.
+
+\end{enumerate}
+ 
+ 
+ Please email me if you have any questions.
+
+% --------------------------------------------------------------
+%     You don't have to mess with anything below this line.
+% --------------------------------------------------------------
+ 
+\end{document}

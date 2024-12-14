@@ -1,0 +1,21 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{CPSC463 Final}
+\author{Tanner Hammond}
+\date{December 2021}
+
+\begin{document}
+
+\maketitle
+
+1. Readability, writeability, and reliability. Variable types like static, implicit heap-dynamic, explicit heap-dynamic, and stack-dynamic. These can effect the 3 due to types like like implicit heap-dynamic variables that are flexible and allow simple code (readability and writeability), but hurt reliability due to loss of error detection in the compiler. Union types can effect all 3 due to free unions which have no type checking and hurt reliability. Discriminated unions provide type checking so reliability isn't hurt, and this allows a safe way for a type to have variables that store different types. Strongly typed is a characteristic that means type errors are always detected. C++ isn't strongly typed due to having free union types which hurt reliability and readability, but improves writeability.\\
+2. Substituting x = 3x into x $<$ 0, you get 3x $<$ 0 which can be simplified to x $<$ 0. Substituting x = x+1, you get x + 1 $<$ 0 which becomes x $<$ -1. X $<$ -1 is the weakest precondition, it implies x $<$ 0 and isn't implied by x $<$ 0. 
+\\
+3. Syntax analysis is about the form and structure while lexical is about the low-level syntactic units. Lexical analysis techniques are less complex and smaller, so separating them keeps both at minimal sizes. Lexical analysis can take longer than syntax analysis, so keeping them separated is good so we aren't waiting on one part to finish.
+\\
+4. C++ has static binding, so it's before run time. The binding is between x and x+7. It's a stack-dynamic variable which is statically bound, storage binding during run time and allocated from the run-time stack.
+\\
+5. The FIRST from the pairwise disjointness test for A rules are a, b, and c. For B, a, b, and a. For C, a, b, and c. This fails the test due to the repeated FIRST terminals. When parsing, rules could incorrectly pick a rule because of the same first variables.
+
+\end{document}

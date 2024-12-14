@@ -1,0 +1,102 @@
+% --------------------------------------------------------------
+% This is all preamble stuff that you don't have to worry about.
+% Head down to where it says "Start here"
+% --------------------------------------------------------------
+ 
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{algorithmic}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+ 
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{reflection}[2][Reflection]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}                      
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{definition}[2][definition]{\begin{trivlist}                      
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+ 
+\begin{document}
+ 
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+ 
+%\renewcommand{\qedsymbol}{\filledbox}
+ 
+\title{Homework \#3}%replace X with the appropriate number
+\author{Tanner Hammond\\ %replace with your name
+CPSC 395 - Analysis of Algorithms
+\\ Due: Monday, 21} %if necessary, replace with your course title
+\date{}
+\maketitle
+
+\begin{enumerate}
+\item Exercise 5.1-2 (I want the algorithm, not a description) \\
+Describe an implementation of the procedure RANDOM(a,b) that only makes calls
+to RANDOM(0,1). What is the expected running time of your procedure, as a
+function of a and b? \\
+A good way to think about this is thinking about it as a binary representation due to the calls are only 0 and 1. \\
+\\
+RANDOM(a,b) 
+\begin{algorithmic}
+\IF{a == b}
+\STATE return a
+\ENDIF
+\STATE Let n = $\ceil{log_2(b-a+1)}$ (Part of the binary representation approach, n is the number of digits in binary so it will be the amount of times the for loop will go) 
+\STATE range = b-a
+\STATE result = 0 
+\FOR{i=1 to n (Will call Random(0,1) n times)}
+\STATE rand = RANDOM(0,1) (sets rand to the random number)
+\STATE result = result + r (adds r to the result)
+\ENDFOR
+\IF{result $>$ range (If result is bigger than the range, it will continue the process over)} 
+\STATE return RANDOM(a,b)
+\ELSE
+\STATE  return a + result (returns the result + a since it will be a valid number)
+\ENDIF
+\end{algorithmic}
+
+\\
+\item Exercise 5.2-3
+Use indicator random variables to compute the expected value of the sum of n dice. \\
+Let random variable $D_i$ be the value on the ith dice. The values of $D_i$ are from the set \{1,2,3,4,5,6\}. They have the same probability $1/6$ due to it being a 6-sided dice. So Pr($D_i = k$).
+The expectation of a single dice $D_i$ is \\
+E$[D_i]$ = $\sum_{k=1}^{6} kPr(D_i=k)$ \\
+= (1+2+3+4+5+6)/6 \\
+= 3.5 \\
+For multiple dice, it will be 3.5 times the number of dice. So for n dice, it will be 3.5n.
+
+\item Exercise 5.3-2 \\
+Professor Kelp decides to write a procedure that produces at random any permutation
+besides the identity permutation. He proposes the following procedure:
+PERMUTE-WITHOUT-IDENTITY(A)\\
+1 n = A.length\\
+2 for i = 1 to n - 1 \\
+3 swap A[i] with A[RANDOM(i+1,n)] \\
+Does this code do what Professor Kelp intends? \\
+\\
+So for this code to be what he intends, it must give permutations that is not the identity permutation. There are n! possible permutations of n given numbers. The identity permutation doesn't change the order of the given numbers. Let's use an example to see the permutations produced. Let's consider the algorithm for n = 3, A[1,2,3]. To produce all permutations except the identity permutation, it must produce 3!-1 permutations since n! permutations are possible including identity. So it would have to produce 5 permutations. The for loop has two iterations, i = 1 to 3-1=2. The first iteration takes the values 2 and 3 so only two permutations are possible. The second iteration, the value is only 3 so only one permutation is possible. Since that is also a permutation of the first iteration, a total of only 2 permutations are possible instead of 5. So it doesn't give the identity permutation but fails to produce the other permutations. So it doesn't do as intended.
+
+\item Exercise 5.4-1 (Briefly describe how you got your answer. Assume a year has 365 days)
+How many people must there be in a room before the probability that someone has the same birthday as you do is at least 1/2? How many people must there be before the probability that at least two people have a birthday on July 4 is greater than 1/2? \\
+
+First we have to find the least number of people required for the probability of someone having the same birthday is at least 1/2. So, Probability P where none of the n people has the same birthday $<$ 0.5. P = (364/365)$^n$ due to 365 days in the year and only one day which is the similar birthday and to the n power for the amount of people. nln(364/365) $<$ ln(0.5). n $>$ (ln(0.5)/ln(364/365)). This becomes n = 253. So there must be 253 other in the room to have the same birthday as you. For the probability of two people having the same birthday on July 4th problem, let X be the number of people that their birthday is July 4th. X is a random variable  with the parameter p = 1/365. P(X=k) = $(^n_k)p^k(1-p)^{n-k}$ where n is the number of the people in the room. We must find P(X=0) + P(X = 1) $<$ 0.5 so we the probability of having 2 or more is at least 1/2. We must calculate with P(X=0) + P(X = 1) and the previous math from the first part of the question. So P(X=0) + P(X=1) = (364/365)$^n$ + n(364/365)$^{n-1}$ 1/365 = (364/365)$^{n-1}$(364+n/365). The n that satisfies is 613 and is proved when plugged into the previous, (364/365)$^{n-1}$(364+n/365).
+
+\end{enumerate}
+ 
+% --------------------------------------------------------------
+%     You don't have to mess with anything below this line.
+% --------------------------------------------------------------
+ 
+\end{document}

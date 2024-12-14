@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{HW#7}
+\author{Tanner Hammond}
+\date{October 2020}
+
+\begin{document}
+
+\maketitle
+
+\newline The database to store data about students can be done with several tables. Some of the relations in the table will be in Boyce-Codd Normal Form. A relvar is in Boyce-Codd Normal Form if and only if every left-irreducible FD's determinant is a candidate key. The first and main table would be Students table with the attributes:
+\newline Student Number, Gender, Advisors, Majors, SAT Scores, High School Rank, Degree Date, Degree, Address, Social Organisations, Cumulative GPA, and Courses.
+\newline The Courses table holds the attributes:
+\newline Student Number, Semester Year, Semester Season, Course, Grade, Units, and Instructor.
+\newline The candidate keys are Student Number and $\{$Student Number, Semester Year, Semester Season$\}$. The foreign key is Student number due to it referring to the primary key in Students to link the two tables together.
+\newline Irreducible functional dependencies:
+\begin{eqnarray*}
+      Student Number &\rightarrow& Gender \\
+      Student Number &\rightarrow& Gender\\
+      Student Number &\rightarrow& Gender\\
+      Student Number &\rightarrow& Advisors\\
+      Student Number &\rightarrow& Majors\\
+      Student Number &\rightarrow& SAT Scores\\
+      Student Number &\rightarrow& High School Rank\\
+      Student Number &\rightarrow& Degree Date\\
+      Student Number &\rightarrow& Degree\\
+      Student Number &\rightarrow& Address\\
+      Student Number &\rightarrow& Social Organisations\\
+      Student Number &\rightarrow& Cumulative GPA\\
+      Student Number &\rightarrow& Courses\\
+      Student Number, Semester Season, Semester Year &\rightarrow& Course Name\\
+      Student Number, Semester Season, Semester Year &\rightarrow& Grade\\
+      Student Number, Semester Season, Semester Year &\rightarrow& Units\\
+      Student Number, Semester Season, Semester Year &\rightarrow& Instructor
+     \end{eqnarray*}
+     
+\end{document}
+
+
+Step 1: Write Relvar R with all of the attributes:
+Relvar R:

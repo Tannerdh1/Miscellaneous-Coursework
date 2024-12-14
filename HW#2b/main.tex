@@ -1,0 +1,58 @@
+\begin{center}
+    \textbf{Part 2}
+\end{center}
+
+\begin{enumerate}
+
+\item Consider the language $L$ of strings over $\{a, b\}$ as defined
+  by:
+\begin{enumerate}[i)]
+\item Basis: $aa, ab \in L$.
+\item Recursive step: If $u \in L$, then $uaa, uab, uba, ubb \in L$.
+\item Closure: A string $u$ is in $L$ only if it can be obtained from
+  the basis by a finite number of applications of the recursive step.
+\end{enumerate}
+Show, using mathematical induction, that every string in $L$ has even
+length.
+
+\item Give a recursive definition of the set $\{ a^ib^j \mid 0 \leq i
+  \leq j \leq 2i \}$.
+  \newline Let L = $\{ a^ib^j \mid 0 \leq i \leq j \leq 2i \}$
+  \newline Basis: $\lambda \in L$ 
+  \newline Recursive Step: If $u \in L$ then $aub$ and $aub^2$ are in $L$
+  \newline Closure: A string is in L if it can be obtained from the basis by a finite number of applications of the recursive step.
+
+  \item For each of the following, write a
+  regular expression that describes the set.
+\begin{enumerate}
+\item The set of strings, $s$, over $\{a, b\}$ such that the number of
+  $a$'s in $s$
+  is divisible by 3.
+  \newline $(b^*ab^*ab^*a)^*b^*$
+
+\item The set of strings, $s$, over $\{a, b\}$ such that the length of
+  $s$ is odd and $s$
+  contains exactly two $b$'s.
+  \newline $(a+b)*(a+b)$
+
+\end{enumerate}
+
+\item Use the regular expression identities in Table 2.1 in the text
+  book to prove:
+\[
+  \mathbf{(ba)^+(a^*b^* \cup a^*)} = \mathbf{(ba)^*ba^+(b^* \cup \lambda)}. 
+\]
+\[
+  Step 1: \mathbf{(ba)^+(a^*b^* \cup a^*)} = \mathbf{(ba)^+(a^*)(b^* \cup \lambda)} (Identity 5)
+\]
+\[
+  = \mathbf{(ba)^*baa^*(b^* \cup \lambda)} (Identity 4)
+\]
+\[
+  = \mathbf{(ba)^*ba^+(b^* \cup \lambda)}
+\]
+ 
+\end{enumerate}
+\end{document}
+
+

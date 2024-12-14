@@ -1,0 +1,73 @@
+\documentclass{article}
+
+\usepackage[english]{babel}
+\usepackage{amsthm}
+\usepackage{amssymb}
+
+\newcommand{\nat}{\mathbb{N}}
+
+% Here is another way to make the title for a document.
+% The following three commands specify values for the title, author
+% and date fields of the title for this document.
+\title{Quiz 3}
+\author{CPSC463, Fall2021,
+        Tanner Hammond}
+\date{September 17, 2021}
+
+
+\begin{document}
+\maketitle % This command creates the title for the document using
+           % the values for the title, author and date that were
+           % specified in the preamble.
+
+
+The \emph{greatest common divisor} of two non-zero positive integers,
+$n$ and $m$, is defined as:
+\begin{eqnarray*}
+  gcd(n, m)  = g &\mbox{ iff }& \mbox{$g$ divides both $n$ and $m$, and}\\
+  && \mbox{for each $i > g$, $i$ does not divide both $n$ and $m$.}
+\end{eqnarray*}
+
+
+Using Axiomatic semantics, verify that the following program fragment (written
+in pseudo-code with curly braces denoting comments)
+is correct.
+
+\begin{verbatim}
+{n > 0, m > 0}
+answer = 1;
+num1 = n;
+num2 = m;
+tryNum = 2;
+done = false;
+while (!done) do
+  if ((tryNum > num1) or (tryNum > num2)) then
+    done = true;
+  elseif ((num1 mod tryNum = 0) and (num2 mod tryNum = 0)) then
+    answer = tryNum;
+  endif
+  tryNum = tryNum + 1;
+endwhile
+{answer = gcd(n, m)}
+\end{verbatim}
+
+tryNum $\leq$ num1 $||$ tryNum $\leq$ num2\\
+answer $\leq$ num1 \&\& ans $\leq$ num2\\
+
+Things needed to prove correct:
+P $=>$ I\\
+\{I and B\} S \{I\}\\
+\{I and (not B)\} $=>$ Q\\
+Loop terminates\\
+
+Iterations: \\
+
+I =\\
+B = \{n $>$ 0, m $>$ 0, !done \} \\
+S =
+
+
+\end{document}
+
+
+

@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+\addbibresource{references.bib}
+\title{Final Writeup}
+\author{Tanner Hammond}
+\date{May 2021}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+With the increasing popularity and use of cryptocurrencies, a major focus continues to be the security due to attacks and exploits that have been seen in the past. One of the areas of focus are smart contracts. Smart contracts are self-executing agreements between a buyer and seller that is then stored in a blockchain. These were first introduced in cryptocurrency by Ethereum in 2015 and many others have followed such as Cardano and Stellar. Sometimes the code of smart contracts allow the ability of exploitation which has led to coins being stolen and some cryptocurrencies' value being almost destroyed such as BeautyChain. These exploitations produced the need for tools to scan these contracts to detect any vulnerabilities. There have been several tools for this like MythX, Securify, and Oyente. There are issues with these tools such as being programs you have to pay for, complicated, outdated, and most only support a limited number of vulnerabilities. The last issue is the one being focused on this paper. Securify is a popular, free analysis tool, but it doesn't have the range of support that tools like MythX, a paid analysis tool, have. An important vulnerability it doesn't support are integer overflow vulnerabilities. Integer overflow vulnerabilities were what caused what happened to BeautyChain. The aim of this project is to improve Securify by adding the support of integer overflow vulnerabilities. 
+
+\section{Literature Review}
+
+The paper "Static Analysis of Integer Overflow of Smart Contracts in Ethereum" \cite{Static} has studied and analyzed 11 kinds of integer overflow features. There are 4 types of addition overflow, 4 types of subtraction overflow, and 3 types of multiplication overflow. The paper describes the circumstances all of these happen. The authors of the paper designed their own tool and were able to find about a total of 400 instances of integer overflow when they scanned the source code of 7,000 smart contracts. They compared their tool to several others after successfully being able to detect integer overflow vulnerabilities. Tools like Securify, SmartCheck, and Oyente weren't able to detect any integer overflow vulnerabilities. VaaS is able to detect some, but can't complete detection for complex smart contracts. VaaS also has some limitations such as only four free uses a day and isn't suitable for mass detection. Besides VaaS, MythX is also able to identify integer overflow vulnerabilities. The majority of tools will provide specifically what vulnerabilities they are able to detect. They use the SWCID \cite{SWCReg} which is a registry that identifies vulnerabilities in smart contracts, give them IDs, explains what they are, how they happen, and examples of what the issue looks like in the code. Securify \cite{Securify} is a security analyzer for Ethereum smart contracts. It is scalable, fully automated, and currently supports 38 vulnerabilities.  It consists of two main steps. It analyzes the contract's dependency to extract precise semantic information from the code then it checks compliance and violation patterns that satisfy conditions for proving if a property holds or not. The benefits they found from evaluation was that it analyzes all contract behaviors to avoid undesirable false negatives, reduces the user effort in classifying warnings into true positives and false alarms by guaranteeing that certain behaviors are actual errors, it supports a new domain-specific language that enables users to express new vulnerability patterns as they emerge, and its analysis pipeline is fully automated using scalable, off-the-shelf Datalog solvers. Their GitHub hasn't seemed to be updated for about a year. It also supports all contracts written in Solidity 0.5.8 to current which is 0.8.2.
+
+\section{Methodology}
+
+\subsection{Mythx and Virtual Machine}
+MythX is a smart contract analysis tool. It is a service you have to pay for and I paid for a month subscription that gives me 500 scans. For MythX, I installed Oracle VM Virtual Box and created an Ubuntu virtual machine. After the virtual machine was set up, I installed the latest Python version and the MythX client. I then set the API key environment variable for my MythX account to the key given to me by MythX. MythX has a readthedocs \cite{MythXClientDocumentation} that details the installation and the usage of MythX. There are different options pertaining for your use and your files.
+\subsection{Securify}
+Securify is available from their public GitHub. After downloading the folder, Docker is going to be required for using Securify on Windows. The Securify README has the commands necessary to start the Docker and how to scan contracts with Securify. 
+\subsection{Testing}
+The smart contracts tested are from the GitHub \cite{StaticTestCases} provided from the paper, "Static Analysis of Integer Overflow of Smart Contracts in Ethereum" \cite{Static}. I tested these smart contracts with MythX first since it's confirmed to test for integer overflow violations. I can then test it with the original Securify \cite{Securify} to show that it does not detect the integer overflow. The files scanned were older and varying versions of Solidity, so with MythX the version was defined and a tool called solc-select \cite{SolcSelect} was used on the virtual machine to switch between different Solidity versions. Securify only works with contracts that are Solidity versions $\geq$ 0.5.8, but I didn't see a version limit on MythX.
+\subsection{Improving Securify}
+The paper that provides the smart contracts to be tested also includes the XPath patterns for the three types of integer overflow. The patterns in Securify are in DL files and Python files, so it takes some translating and working with the syntax to bring over the patterns into Securify. Three files are added to Securify, one for addition overflow, one for subtraction overflow, and one for multiplication overflow. The testing is comprised of three things, the MythX scan, the original Securify scan, and the improved Securify scan. The original Securify scan is the control of the testing to show that original Securify does not identify integer overflow vulnerabilities. The MythX scan shows that there is a integer overflow vulnerability in the smart contract to compare with the improved Securify scan that will then be able to show that there is an integer overflow vulnerability detected.
+
+\section{Process}
+Patterns for Securify are in DL and Python files. Not all of the patterns use Python files and some are only in Python files. Each of the three types will get their own file to be able to distinguish between the different types of integer overflow. These DL files are located in the Securify folder securify/staticanalysis/souffle\_analysis/patterns. These patterns are registered and have other important information in analysis-patterns.dl in the souffle\_analysis patterns, so these files have to included there and also set up the register for them.
+\subsection{Addition}
+There are 4 types of addition integer overflow that has to be checked for:
+\begin{enumerate}
+    \item Source code contains a statement that a variable is equal to the integer parameter plus another integer variable other than itself.
+    \item Source code contains a statement that an integer variable or a state variable of mapping type is equal to itself plus the integer parameter or the variable whose value is equal to the integer parameter multiplied by the integer variable.
+    \item Source code includes a statement that an integer variable or a state variable of the mapping type plus equal to the integer parameter.
+    \item Source code contains a statement that the integer parameter or the variable whose value is equal to the integer parameter multiplied by integer variable plus another integer variable whose result is less than or equal to the integer state variable or the balance of the contract or an account address.
+\end{enumerate}
+So there are 4 circumstances to check for in the addition integer overflow DL file.
+\subsection{Subtraction}
+There are 4 types of subtraction integer overflow that has to be checked for:
+\begin{enumerate}
+    \item The first three types of subtraction overflow features are similar to the first three types of addition overflow features by simply replacing the addition operator with the subtraction operator. The form of checking its range is inconsistent.
+    \item The loop body of the smart contract source code contains a statement that an integer variable or a state variable of the mapping type minus equal to the number or an integer constant.
+\end{enumerate}
+\subsection{Multiplication}
+There are 4 types of multiplication integer overflow that has to be checked for:
+\begin{enumerate}
+    \item Source code contains a statement that an integer variable is equal to the integer parameter multiplied by another arbitrary form of integer data, and do not contain any form of statement that check whether its operation is out of range.
+    \item Source code contains a statement that the integer parameter is multiplied by another integer variable whose result is less than or equal to the integer state variable or the balance of the contract or an account address.
+    \item Source code contains a statement that an integer variable multiply equal to the integer parameter or that a state variable of the mapping type multiply equal to the integer parameter.
+\end{enumerate}
+
+\section{Results}
+
+
+
+\section{Resources Used}
+\begin{enumerate}
+    \item Securify \cite{SecurifyGH}
+    \item GitHub
+    \item Oracle VM Virtual Box - Ubuntu Virtual Machine \cite{VirtualBox}
+    \item MythX \cite{MythX}
+    \item Docker \cite{Docker}
+    \item Python 
+\end{enumerate}
+
+\printbibliography
+\end{document}

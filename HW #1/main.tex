@@ -1,0 +1,113 @@
+\documentclass{article}
+
+\usepackage[english]{babel}
+\usepackage{amsthm}
+\usepackage{amssymb}
+
+\newcommand{\nat}{\mathbb{N}}
+
+% Here is another way to make the title for a document.
+% The following three commands specify values for the title, author
+% and date fields of the title for this document.
+\title{Homework 1}
+\author{CPSC450, Fall2020}
+\date{August 19, 2020\\
+Due: Saturday, August 22, 2020, 10pm}
+
+\begin{document}
+\maketitle % This command creates the title for the document using
+           % the values for the title, author and date that were
+           % specified in the preamble.
+
+% To typeset a horizontal line between the title and the rest of the
+% document. 
+\medskip
+\hrule
+\medskip
+
+\centerline{\textbf{Part 1}}
+
+\begin{enumerate}
+\item Let $X = \{n^3 + 3n^2 + 3n \mid n \geq 0\}$ and $Y = \{n^3 - 1 |
+  n > 0\}$.  Prove that $X = Y$ by showing that $X \subseteq Y$ and $Y
+  \subseteq X$.
+  \newline X can also be written as 
+
+\item Prove that for any sets $X$ and $Y$, subsets of a universe set
+  $U$, 
+\[
+\overline{(X \cup Y)} = \overline{X}\cap\overline{Y}.
+\]
+Use the definition of set equality to establish the identity.
+\newline 
+
+\item Give functions $f: \nat \to \nat$ for each of of the following
+  cases:
+  \begin{enumerate}
+  \item $f$ is total and onto, but not one-to-one.
+  \newline $\lfloor (x/2) \rfloor$ Every element is mapped to something, but some elements are mapped to the same element. Such as x=2 and x=3 both map to 1
+  \item $f$ is not total, but is onto.
+  \newline 
+  \end{enumerate}
+  In each case, show that your function satisfies the required properties.
+
+\item Give an example of a binary relation on $\nat \times \nat$ that
+  is reflexive and transitive but not symmetric. Show that your
+  relation satisfies these properties.
+  \newline
+  \newline Let Relation $R = \{(a,b): a \leq b\}$. R is reflexive because (a,a) $\in$ R as a = a.
+  Now let (1,2) $\in$ R because 1 $<$ 2, but (2,1) $\notin$ R because 2 $>$ 1. So R is not symmetric.
+  \newline Now consider (1,2) $\in$ R because 1 $<$ 2 and (2,3) $\in$ R because 2 $<$ 3, but (1,3) $\in$ R because 1 $<$ 3. This means R is transitive. So the Relation R is reflexive and transitive, but not symmetric.
+
+\item A binary relation $\equiv$ is defined on ordered pairs of
+  natural numbers as follows: $[m, n] \equiv [j, k]$ if, and only if,
+  $m+k = n+j$. Prove that $\equiv$ is an equivalence relation on $\nat
+  \times \nat$.
+  
+\end{enumerate}
+
+
+\newpage % forces a new page
+
+\begin{center}
+  \textbf{Part 2}
+\end{center}
+
+\begin{enumerate}
+\item Prove that the set of even integers is countable. 
+\newline Let E be the set of even integers and f(x) = 2x be a function from N to E. This function shows the values:
+\newline f(1) = 2
+\newline f(2) = 4
+\newline f(3) = 6 ...
+\newline 
+
+\item Prove that the union of two disjoint countable sets is countable
+\newline Suppose A and B are both countable and disjoint sets. Suppose both are finite, then A$\cup$B = A$\cup$(B-A). Since A and B-A are finite and disjoint, A$\cup$B = A$\cup$(B-A) is finite. Hence A$\cup$B is countable.
+
+\item Prove that the set of total functions from $\nat$ to $\{0,
+  1\}$ is uncountable.
+  \newline
+  \newline Suppose by contradiction x is countable. Then there exists a function from the natural numbers to X that is 1 to 1 and onto. We can list all elements of X. f(0) = 0.7120...0, f(1) = 0.10970...0, f(2) = 0.110333...3, f(3)...
+  \newline We construct a new real number $\epsilon$ = 0.$\epsilon$0,$\epsilon$1,$\epsilon$2,$\epsilon$3...
+  If there exists an i such that $\epsilon$i $>$ 0, then $\epsilon$ is a subset of X.
+  \newline $\epsilon$i = $F(i)_{i}+1)$ mod 10. 0.810....
+  \newline Since $\epsilon$ belongs to X, there is some y such that f(y) must be $\epsilon$. $\epsilon$(y) = $F(y)_{y} +1) mod 10$. $!= F(y)_{y}$.
+  \newline Therefore f(y) != $\epsilon$. Therefore X is uncountable.
+  
+  
+\item Give a recursive definition of the operation of multiplication
+  of natural numbers  using the successor operation $s$, and the
+  operation of addition $+$.
+  \newline m * s(n) = m*n + m
+  
+\item Prove using mathematical induction:
+  \[
+  \forall n > 2, 1+2^n < 3^n.
+  \]
+  
+
+\end{enumerate}
+
+\end{document}
+
+

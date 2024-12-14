@@ -1,0 +1,149 @@
+\documentclass{article}
+
+\usepackage[english]{babel}
+\usepackage{amsthm}
+\usepackage{amssymb}
+
+\newcommand{\nat}{\mathbb{N}}
+
+\title{Homework 2a}
+\author{CPSC450, Fall2020}
+\date{August 24, 2020\\
+Due: Sunday, August 30, 2020, by 10pm}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+
+\item A total function $f$ from $\nat$ to $\nat$ is \emph{strictly
+  monotone increasing} if for all $n \in \nat$, $f(n) <
+  f(n+1)$. Prove that the set
+  \[
+   \mathcal{F} = \{f: \nat \to \nat \mid f \mbox{ is a strictly monotone increasing
+     function}\}
+   \]
+is uncountable. 
+\newline Assume the set of monotone increasing functions is countable. Then these functions can be listed in a sequence $f_0, f_1, f_2...f_n.$ Define function f as f(0): f0(0) + 1, f(i)=$f_i$(i) + f(i-1) for i $>$ 0. Since $f_i$(i), i follows that f(i) $>$ f(i-1) for all i and $f_i$ is monotone increasing. 
+
+\item Prove or disprove: For a set $S$, if there exists a
+  function $f: \nat \to
+  S$ that is total, many-to-one and onto, then $S$ is denumerable.
+
+\item Prove or disprove: The set of all natural number co-ordinated right
+  triangles in 2-dimensional space is countable.
+
+\item\label{boolean} Let $P = \{A, B\}$ be a set consisting of two
+  proposition 
+  letters (Boolean variables). The set $E$ of well-formed conjunctive
+  and disjunctive Boolean expressions over $P$ is defined recursively
+  as follows:
+\begin{description}
+\item[Basis]: $A, B \in E$.
+\item[Recursive step]: If $u, v \in E$, then $(u
+  \wedge v) \in E$ and
+  $(u \vee v) \in E$.
+\item[Closure]: An expression is in $E$ only if it is obtained from
+  the basis by a finite number of iterations of the recursive step.
+\end{description}
+
+\begin{enumerate}
+\item Explicitly give the Boolean expressions in the sets $E_0$,
+  $E_1$, and $E_2$.
+
+\item For any expression $e \in E$, let $n_p(e)$ denote the number of
+  proposition letters in $e$, and let $n_o(e)$ denote the number of
+  operators (i.e., $\wedge$ and $\vee$) in $e$. Prove, using
+  mathematical induction, that for
+  every expression $e \in E$, the number of
+  occurrences in $e$ of proposition letters is one more than the
+  number of operators.
+\end{enumerate}
+
+\item Prove that a strictly binary tree with $n$ leaves contains $2n
+  -1$ nodes.
+  \newline For n=1, it contains 2(2)-1 = 1 node. For n = 2, it 2(2)- 1 = 3 nodes.  For n = 3, 2(3)-5 nodes. Assume for n=k, a strictly binary tree contains 2k-1 nodes. Then a strictly binary tree with k+1 leaves contains 2(k+1)-1 nodes.
+  \newline 2(k+1)-1 = 2k+2-1
+  \newline = 2k+1
+  \newline = (2k-1) + 2
+  \newline This product shows that for each leaf node added, another node must be added to the leaf. So for every additional leaf, a total of two nodes  must be added.
+
+\item Given alphabet $\Sigma$, prove, using mathematical induction on $i$,
+that for any string $w \in \Sigma^*$, for all $i \geq 0$, $(w^i)^R =
+(w^R)^i$.
+\newline $(w^R)^i = w^Rw^Rw^R.....$ where there's i amount of $w^R$ . $(w^i)^R = (www....)^R$ where there's i amount of w.
+\newline For i = 1, $(w^R)^1 = w^R$ and $(w^1)^R = w^R$.  Assume it is true for i = k, then $(w^R)^k = (w^k)^R$. Now, i = k + 1 $(w^R)^{k+1} = (w^{k+1})^R$.
+\newline $(w^R)^{k+1} = (w^R)^Kw^R$
+\newline $(w^k)^Rw^R$
+\newline $(w^kw)^R$
+\newline $(w^{k+1})^R = (w^i)^R$. Therefore, they are equal.
+
+\item Give a recursive definition of the set of strings over $\{a,
+  b\}$ that contain at least one $b$, and have an even number of $a$s
+  before the first $b$.
+\newline $(aa)^*b(a^*b^*)$
+\end{enumerate}
+
+\newpage
+
+\begin{center}
+    \textbf{Part 2}
+\end{center}
+
+\begin{enumerate}
+
+\item Consider the language $L$ of strings over $\{a, b\}$ as defined
+  by:
+\begin{enumerate}
+\item Basis: $aa, ab \in L$.
+\item Recursive step: If $u \in L$, then $uaa, uab, uba, ubb \in L$.
+\item Closure: A string $u$ is in $L$ only if it can be obtained from
+  the basis by a finite number of applications of the recursive step.
+\end{enumerate}
+Show, using mathematical induction, that every string in $L$ has even
+length.
+\newline The basis elements aa and ab have even length. Let v be any string in L made using the recursive step and assume it has used $n$ recursive steps. V can only be of the type uaa, uab, uba, ubb after (n-1) recursive steps.
+
+\item Give a recursive definition of the set $\{ a^ib^j \mid 0 \leq i
+  \leq j \leq 2i \}$.
+  \newline Let L = $\{ a^ib^j \mid 0 \leq i \leq j \leq 2i \}$
+  \newline Basis: $\lambda \in L$ 
+  \newline Recursive Step: If $u \in L$ then $aub$ and $aub^2$ are in $L$
+  \newline Closure: A string is in L if it can be obtained from the basis by a finite number of applications of the recursive step.
+
+  \item For each of the following, write a
+  regular expression that describes the set.
+\begin{enumerate}
+\item The set of strings, $s$, over $\{a, b\}$ such that the number of
+  $a$'s in $s$
+  is divisible by 3.
+  \newline $(b^*ab^*ab^*a)^*b^*$
+
+\item The set of strings, $s$, over $\{a, b\}$ such that the length of
+  $s$ is odd and $s$
+  contains exactly two $b$'s.
+  \newline $(a+b)^*(a+b)$
+
+\end{enumerate}
+
+\item Use the regular expression identities in Table 2.1 in the text
+  book to prove:
+\[
+  \mathbf{(ba)^+(a^*b^* \cup a^*)} = \mathbf{(ba)^*ba^+(b^* \cup \lambda)}. 
+\]
+\[
+  Step 1: \mathbf{(ba)^+(a^*b^* \cup a^*)} = \mathbf{(ba)^+(a^*)(b^* \cup \lambda)} (Identity 5)
+\]
+\[
+  = \mathbf{(ba)^*baa^*(b^* \cup \lambda)} (Identity 4)
+\]
+\[
+  = \mathbf{(ba)^*ba^+(b^* \cup \lambda)}
+\]
+ 
+\end{enumerate}
+\end{document}
+
+
+
+

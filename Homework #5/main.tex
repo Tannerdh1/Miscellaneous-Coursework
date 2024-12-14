@@ -1,0 +1,32 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Homework 5}
+\author{Tanner Hammond}
+\date{October 2021}
+
+\begin{document}
+
+\maketitle
+
+14. What is the general problem with static scoping?\\
+Regardless of whether nested subprograms are allowed, some variable declarations can be hidden from some other code segments. \\
+15. What is the referencing environment of a statement?\\
+The referencing environment of a statement is the collection of all variables that are visible in the statement.\\
+16. What is a static ancestor of a subprogram? What is a dynamic ancestor of a subprogram?\\
+A static parent of a subprogram is the subprogram that declared the original subprogram. The static ancestors are the static parent of the original subprogram, the static parent's parent which is what declared the parent, and so on until the main program. A dynamic parent of a subprogram is the subprogram that called the original subprogram. The dynamic ancestors of a subprogram is the dynamic parent of the original subprogram, the dynamic parent's parent which is what called the parent, and so on until the main program. \\
+17. What is a block?\\
+A block is a section of code that has its own local variables whose scope is minimized.\\
+18. What is the purpose of the let constructs in functional languages?\\
+It binds names to values, that are often specified as expressions, and then uses the names in the expression in the second part. It used to limit scope, since the scope of the names is limited to the let construct.\\
+19. What is the difference between the names defined in an ML let construct from the variables declared in a C block?\\
+The names are of values, so are different than variables in imperative languages. Once set they can't be changed.\\
+20. Describe the encapsulation of an F# let inside a function and outside all functions.\\
+Inside a function, the scope of a name is from the end of the defining expression to the end of the function. Outside a function extends all of the code.\\
+21. What are the advantages and disadvantages of dynamic scoping?\\
+Advantages: Parameters passed from one subprogram to another are variables that are defined in the caller, none of this needs to be passed in a dynamically scoped language since it's implicitly visible in its called subprogram.\\
+Disadvantages: Access to nonlocal variables takes longer than with static scoping. More difficult to read due to calling sequence of subprograms must be known to determine the meaning of references to nonlocal variables. Inability to type check references to nonlocal statically, results from inability to statically find the declaration for a variable referenced as a nonlocal. During the time span beginning with execution and ending when the execution ends, the local variables are visible to any other executing subprogram and there is no way to protect local variables from this accessibility.\\
+22. What are the advantages of named constants?\\
+Helpful to readability, it's easier to read the named constant pi instead of 3.141592... Also useful because there is only one place where the value needs to be updated, so this helps the modifiability.
+
+\end{document}
